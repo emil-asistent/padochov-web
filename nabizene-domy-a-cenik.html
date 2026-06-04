@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nabízené domy a ceník — Rezidence Padochov</title>
+<meta name="description" content="Vyberte si svůj vysněný dům v Rezidenci Padochov. Ceník a parametry jednotlivých domů – dispozice, plochy, status a cena včetně DPH.">
+<link rel="icon" href="assets/img/REZIDENCE-PADOCHOV-Logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="/"><img src="assets/img/REZIDENCE-PADOCHOV-Logo.png" alt="Rezidence Padochov"></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/">Úvod</a></li>
+        <li><a href="lokalita">Lokalita</a></li>
+        <li><a href="o-projektu">O projektu</a></li>
+        <li><a href="nabizene-domy-a-cenik" class="active">Nabízené domy a ceník</a></li>
+        <li><a href="galerie">Galerie</a></li>
+        <li><a href="kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hlavička stránky (zelené pozadí) -->
+<section class="section bg-green">
+  <div class="container">
+    <h1 style="font-size:clamp(34px,4.5vw,54px);">Nabízené domy a ceník</h1>
+    <p class="body-bold" style="font-size:20px;color:var(--text);max-width:720px;">Vyberte si svůj vysněný dům v REZIDENCI PADOCHOV. Podívejte se, jak je situovaný a jakou má cenu.</p>
+  </div>
+</section>
+
+<!-- Interaktivní výběr domů (původně plugin amsv_map) -->
+<section class="section">
+  <div class="container">
+    <div class="house-map">
+      <img src="assets/img/vyber-domu.jpg" alt="Plán areálu Rezidence Padochov – výběr domu">
+      <!-- Levý trojdům (1. etapa): domy 01–03 -->
+      <a class="house-pin volny"     style="left:26%;top:33%;" href="dum-01" title="Dům 01 – Volný">1</a>
+      <a class="house-pin rezervace" style="left:35%;top:28%;" href="dum-02" title="Dům 02 – Rezervace">2</a>
+      <a class="house-pin prodano"   style="left:44%;top:27%;" href="dum-03" title="Dům 03 – Prodáno">3</a>
+      <!-- Pravý trojdům (2. etapa): domy 04–06 -->
+      <a class="house-pin neni"      style="left:60%;top:21%;" href="dum-04" title="Dům 04 – Zatím není k dispozici">4</a>
+      <a class="house-pin neni"      style="left:70%;top:16%;" href="dum-05" title="Dům 05 – Zatím není k dispozici">5</a>
+      <a class="house-pin neni"      style="left:79%;top:13%;" href="dum-06" title="Dům 06 – Zatím není k dispozici">6</a>
+    </div>
+    <div class="house-cards">
+      <a class="volny" href="dum-01"><span class="hc-num">Dům 01</span><span class="hc-st">Volný</span></a>
+      <a class="rezervace" href="dum-02"><span class="hc-num">Dům 02</span><span class="hc-st">Rezervace</span></a>
+      <a class="prodano" href="dum-03"><span class="hc-num">Dům 03</span><span class="hc-st">Prodáno</span></a>
+      <a class="neni" href="dum-04"><span class="hc-num">Dům 04</span><span class="hc-st">Připravujeme</span></a>
+      <a class="neni" href="dum-05"><span class="hc-num">Dům 05</span><span class="hc-st">Připravujeme</span></a>
+      <a class="neni" href="dum-06"><span class="hc-num">Dům 06</span><span class="hc-st">Připravujeme</span></a>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--status-volny)"></i> Volný</span>
+      <span><i style="background:var(--status-rezervace)"></i> Rezervace</span>
+      <span><i style="background:var(--status-prodano)"></i> Prodáno</span>
+      <span><i style="background:var(--status-neni)"></i> Zatím není k dispozici</span>
+    </div>
+
+    <h2 class="section-title">Ceník a parametry</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Číslo domu</th>
+            <th>Dispozice</th>
+            <th>Typ</th>
+            <th>Užitná plocha</th>
+            <th>Parkování</th>
+            <th>Status</th>
+            <th>Cena</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="volny"><td><a href="dum-01">Dům 01</a></td><td>5+kk</td><td>koncový</td><td>cca 112 m²</td><td>2 stání</td><td>Volný</td><td>Koncept</td></tr>
+          <tr class="rezervace"><td><a href="dum-02">Dům 02</a></td><td>5+kk</td><td>prostřední</td><td>cca 133 m²</td><td>2 stání</td><td>Rezervace</td><td>Koncept</td></tr>
+          <tr class="prodano"><td><a href="dum-03">Dům 03</a></td><td>5+kk</td><td>koncový</td><td>cca 112 m²</td><td>2 stání</td><td>Prodáno</td><td>Koncept</td></tr>
+          <tr class="neni"><td><a href="dum-04">Dům 04</a></td><td>5+kk</td><td>koncový</td><td>cca 112 m²</td><td>2 stání</td><td>Zatím není k dispozici</td><td>Na dotaz</td></tr>
+          <tr class="neni"><td><a href="dum-05">Dům 05</a></td><td>5+kk</td><td>prostřední</td><td>cca 133 m²</td><td>2 stání</td><td>Zatím není k dispozici</td><td>Na dotaz</td></tr>
+          <tr class="neni"><td><a href="dum-06">Dům 06</a></td><td>5+kk</td><td>koncový</td><td>cca 112 m²</td><td>2 stání</td><td>Zatím není k dispozici</td><td>Na dotaz</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:14px;font-family:var(--nexa-book);color:var(--grey);font-size:15px;">Výměry vycházejí z projektové dokumentace: koncové domy v trojdomu cca 112 m², prostřední domy cca 133 m². Každý dům má dvě parkovací stání, vlastní zahradu a terasu s pergolou.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="logo"><img src="assets/img/REZIDENCE-PADOCHOV-Logo.png" alt="Rezidence Padochov"></div>
+    <nav class="footer-nav">
+      <ul>
+        <li><a href="/">Úvod</a></li>
+        <li><a href="lokalita">Lokalita</a></li>
+        <li><a href="o-projektu">O projektu</a></li>
+        <li><a href="nabizene-domy-a-cenik">Nabízené domy a ceník</a></li>
+        <li><a href="galerie">Galerie</a></li>
+        <li><a href="kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div></div>
+    <div>
+      <p class="f-label">Makléř:</p>
+      <p class="f-name">Honza Čermák</p>
+      <p class="f-addr">Tolstého 562/35
+Brno-Žabovřesky
+616 00</p>
+      <p class="f-ic">IČ: 05808201</p>
+      <p class="f-copy">© 2025 REZIDENCE PADOCHOV</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
