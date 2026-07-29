@@ -1,0 +1,9 @@
+{
+  "name": "padochov-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rezidence Padochov — statický web + kontaktní formulář (přímé odeslání na e-mail)",
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}

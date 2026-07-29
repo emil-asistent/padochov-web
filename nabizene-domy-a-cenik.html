@@ -4,120 +4,346 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nabízené domy a ceník — Rezidence Padochov</title>
-<meta name="description" content="Vyberte si svůj vysněný dům v Rezidenci Padochov. Ceník a parametry jednotlivých domů – dispozice, plochy, status a cena včetně DPH.">
-<link rel="icon" href="assets/img/REZIDENCE-PADOCHOV-Logo.png">
+<meta name="description" content="Vyberte si svůj vysněný dům v Rezidenci Padochov. Ceník a parametry jednotlivých domů – dispozice, plochy, status a cena.">
+<link rel="icon" type="image/svg+xml" href="assets/img/REZIDENCE-PADOCHOV-Symbol.svg">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* ===================== Výběr domů — obláček ===================== */
+.vp-wrap{
+  --vg:#6faa39; --rez:#d99a1c; --pro:#cf4a45; --nen:#9a9a9a;
+  --e-glide:cubic-bezier(.2,.7,.2,1); --e-lift:cubic-bezier(.34,1.28,.42,1); --e-out:cubic-bezier(.22,1,.36,1);
+  background:#f6f5f2;
+}
+.vp-head{max-width:1200px;margin:0 auto;padding:0 24px 28px;}
+.vp-eyebrow{font-family:var(--nexa-bold);text-transform:uppercase;letter-spacing:.17em;font-size:12px;color:#8a8578;margin:0 0 12px;}
+.vp-head h2{font-size:clamp(28px,3.4vw,46px);margin:0 0 8px;color:#15140f;}
+.vp-head p{font-family:var(--nexa-book);color:#5c584d;font-size:16px;max-width:560px;margin:0;}
+
+.vp-plan{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:20;}
+.vp-stage{position:relative;overflow:visible;border-radius:2px;
+  box-shadow:0 30px 60px -34px rgba(30,26,18,.4);}
+.vp-base{display:block;width:100%;height:auto;border-radius:2px;transition:filter .4s var(--e-glide);}
+.vp-stage.is-dim .vp-base{filter:brightness(.9) saturate(.94);}
+
+/* --- hotspot (bod, přesně umístěný) --- */
+.vp-hot{position:absolute;transform:translate(-50%,-50%);z-index:3;
+  --px:-50%; --arrow:50%; --origin:top center;}
+.vp-hot[data-place="left"]{--px:calc(-100% + 30px); --arrow:calc(100% - 30px); --origin:top right;}
+.vp-hot.open,.vp-hot:focus-within{z-index:40;}
+.vp-pin{position:relative;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;
+  font-family:var(--nexa-bold);font-size:15px;color:#fff;text-decoration:none;cursor:pointer;
+  background:rgba(20,22,20,.86);backdrop-filter:blur(3px);border:2px solid rgba(255,255,255,.66);
+  box-shadow:0 5px 16px rgba(0,0,0,.32);transition:transform .2s var(--e-lift),border-color .2s ease,background .2s ease;}
+.vp-dot{position:absolute;right:-3px;top:-3px;width:12px;height:12px;border-radius:50%;border:2px solid #fff;}
+.st-volny .vp-dot{background:var(--vg);} .st-rezervace .vp-dot{background:var(--rez);}
+.st-prodano .vp-dot{background:var(--pro);} .st-neni .vp-dot{background:var(--nen);}
+.vp-hot.open .vp-pin,.vp-hot:focus-within .vp-pin{transform:scale(1.12);background:rgba(20,22,20,.98);}
+.st-volny.vp-hot.open .vp-pin,.st-volny.vp-hot:focus-within .vp-pin{border-color:var(--vg);}
+.st-rezervace.vp-hot.open .vp-pin{border-color:var(--rez);} .st-prodano.vp-hot.open .vp-pin{border-color:var(--pro);}
+/* pulz jen u volného */
+.st-volny .vp-dot::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--vg);
+  animation:pinPulse 2.6s var(--e-out) infinite;}
+@keyframes pinPulse{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(2.2);opacity:0}}
+
+/* --- obláček --- */
+.vp-pop{position:absolute;top:calc(100% - 4px);left:50%;width:288px;padding-top:16px;
+  perspective:950px;transform-origin:var(--origin);
+  transform:translate(calc(var(--px) + var(--nudge,0px)),8px) scale(.94);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .18s ease,transform .34s var(--e-lift);}
+.vp-hot.open .vp-pop,.vp-hot:focus-within .vp-pop{opacity:1;visibility:visible;pointer-events:auto;
+  transform:translate(calc(var(--px) + var(--nudge,0px)),0) scale(1);}
+.vp-card{position:relative;background:#fff;border-radius:7px;
+  box-shadow:0 24px 50px -20px rgba(0,0,0,.5),0 4px 12px rgba(0,0,0,.14);
+  transform-style:preserve-3d;transform:rotateX(0) rotateY(0);
+  transition:transform .5s var(--e-glide);will-change:transform;}
+.vp-card.tilting{transition:none;}
+.vp-card::before{content:"";position:absolute;top:-7px;left:var(--arrow-x,var(--arrow));
+  transform:translateX(-50%) rotate(45deg) translateZ(2px);width:14px;height:14px;background:#fff;
+  box-shadow:-2px -2px 6px rgba(0,0,0,.05);}
+.vp-layer{transform-style:preserve-3d;}
+.vp-photo{position:relative;height:134px;overflow:hidden;border-radius:7px 7px 0 0;transform:translateZ(24px);}
+.vp-photo img{width:100%;height:100%;object-fit:cover;transform-origin:60% 42%;transform:scale(1.08);will-change:transform;}
+.vp-hot.open .vp-photo img{animation:kenburns 9s var(--e-out) forwards;}
+@keyframes kenburns{from{transform:scale(1.08) translate(0,0);}to{transform:scale(1.17) translate(-2%,-1.6%);}}
+.vp-chip{position:absolute;left:11px;top:11px;display:inline-flex;align-items:center;gap:6px;
+  background:rgba(17,17,17,.76);backdrop-filter:blur(4px);color:#fff;font-family:var(--nexa-bold);
+  text-transform:uppercase;letter-spacing:.06em;font-size:10px;padding:5px 11px;border-radius:100px;}
+.vp-chip b{width:7px;height:7px;border-radius:50%;}
+.st-volny .vp-chip b{background:var(--vg);} .st-rezervace .vp-chip b{background:var(--rez);}
+.st-prodano .vp-chip b{background:var(--pro);} .st-neni .vp-chip b{background:#c8c8c8;}
+.st-prodano .vp-photo img,.st-neni .vp-photo img{filter:grayscale(.72) brightness(.94);}
+.vp-body{padding:14px 16px 16px;transform:translateZ(40px);}
+.vp-title{font-family:var(--nexa-heavy);font-size:20px;color:#15140f;line-height:1;margin-bottom:8px;}
+.vp-specs{font-family:var(--nexa-book);font-size:13px;color:#6c685c;line-height:1.5;margin:0 0 12px;}
+.vp-row{display:flex;align-items:baseline;justify-content:space-between;padding-top:11px;border-top:1px solid #efece6;}
+.vp-price{font-family:var(--nexa-heavy);font-size:15px;color:#15140f;}
+.st-volny .vp-price{color:#4e8a2b;}
+.vp-price small{font-family:var(--nexa-book);font-weight:400;font-size:11px;color:#9a9588;margin-left:6px;}
+.vp-cta{display:block;margin-top:13px;text-align:center;background:var(--green);color:#15140f;
+  font-family:var(--nexa-bold);text-transform:uppercase;letter-spacing:.05em;font-size:12px;
+  padding:12px;border-radius:2px;text-decoration:none;transition:filter .15s ease,letter-spacing .2s ease;}
+.vp-cta:hover{filter:brightness(.93);letter-spacing:.08em;}
+.st-prodano .vp-cta,.st-neni .vp-cta{background:#eeece7;color:#5c584d;}
+/* staggered obsah */
+.vp-hot.open .vp-chip {animation:vpRise .42s var(--e-glide) .05s both;}
+.vp-hot.open .vp-title{animation:vpRise .42s var(--e-glide) .10s both;}
+.vp-hot.open .vp-specs{animation:vpRise .42s var(--e-glide) .16s both;}
+.vp-hot.open .vp-row  {animation:vpRise .42s var(--e-glide) .22s both;}
+.vp-hot.open .vp-cta  {animation:vpRise .42s var(--e-glide) .28s both;}
+@keyframes vpRise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* legenda + ceník */
+.vp-legend{max-width:1200px;margin:32px auto 0;padding:0 24px;display:flex;flex-wrap:wrap;gap:24px;
+  font-family:var(--nexa-book);font-size:13.5px;color:#6c685c;}
+.vp-legend span{display:inline-flex;align-items:center;gap:8px;} .vp-legend i{width:10px;height:10px;border-radius:50%;}
+.vp-cenik{max-width:1200px;margin:54px auto 0;padding:0 24px;}
+.vp-cenik .table-wrapper table{background:#fff;}
+
+/* scrim + sheet (mobil) */
+.vp-scrim{position:fixed;inset:0;background:rgba(20,18,12,.4);opacity:0;visibility:hidden;transition:opacity .2s ease;z-index:1100;}
+.vp-scrim.on{opacity:1;visibility:visible;}
+.vp-sheet{position:fixed;left:14px;right:14px;bottom:14px;margin:0 auto;max-width:430px;z-index:1101;
+  opacity:0;visibility:hidden;transform:translateY(18px);transition:opacity .22s ease,transform .22s ease;}
+.vp-sheet.on{opacity:1;visibility:visible;transform:translateY(0);}
+body.is-touch .vp-pop{display:none;}
+.vp-sheet .vp-card::before{display:none;} .vp-sheet .vp-photo{height:172px;}
+.vp-sheet .vp-card{transform:none !important;}
+
+@media(max-width:900px){ .vp-plan{z-index:auto;} }
+@media (prefers-reduced-motion:reduce){
+  .vp-pop{transition-duration:.001s;}
+  .vp-hot.open .vp-photo img{animation:none;transform:scale(1.03);}
+  .vp-hot.open *{animation:none !important;}
+  .vp-dot::after{animation:none;display:none;}
+  .vp-card{transition:none;}
+}
+</style>
 </head>
 <body>
-
 <header class="site-header">
   <div class="container">
     <a class="logo" href="/"><img src="assets/img/REZIDENCE-PADOCHOV-Logo.png" alt="Rezidence Padochov"></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="/">Úvod</a></li>
-        <li><a href="lokalita">Lokalita</a></li>
-        <li><a href="o-projektu">O projektu</a></li>
-        <li><a href="nabizene-domy-a-cenik" class="active">Nabízené domy a ceník</a></li>
-        <li><a href="galerie">Galerie</a></li>
-        <li><a href="kontakt">Kontakt</a></li>
-      </ul>
-    </nav>
+    <nav class="main-nav"><ul>
+      <li><a href="/">Úvod</a></li><li><a href="lokalita">Lokalita</a></li>
+      <li><a href="o-projektu">O projektu</a></li><li><a href="nabizene-domy-a-cenik" class="active">Nabízené domy a ceník</a></li>
+      <li><a href="galerie">Galerie</a></li><li><a href="kontakt">Kontakt</a></li>
+    </ul></nav>
   </div>
 </header>
 
-<!-- Hlavička stránky (zelené pozadí) -->
 <section class="section bg-green">
   <div class="container">
     <h1 style="font-size:clamp(34px,4.5vw,54px);">Nabízené domy a ceník</h1>
-    <p class="body-bold" style="font-size:20px;color:var(--text);max-width:720px;">Vyberte si svůj vysněný dům v REZIDENCI PADOCHOV. Podívejte se, jak je situovaný a jakou má cenu.</p>
+    <p class="body-bold" style="font-size:20px;color:var(--text);max-width:720px;">Šest rodinných domů 5+kk ve dvou trojdomech. Vyberte si dům v plánu areálu.</p>
   </div>
 </section>
 
-<!-- Interaktivní výběr domů (původně plugin amsv_map) -->
-<section class="section">
-  <div class="container">
-    <div class="house-map">
-      <img src="assets/img/vyber-domu.jpg" alt="Plán areálu Rezidence Padochov – výběr domu">
-      <!-- Levý trojdům (1. etapa): domy 01–03 -->
-      <a class="house-pin volny"     style="left:26%;top:33%;" href="dum-01" title="Dům 01 – Volný">1</a>
-      <a class="house-pin rezervace" style="left:35%;top:28%;" href="dum-02" title="Dům 02 – Rezervace">2</a>
-      <a class="house-pin prodano"   style="left:44%;top:27%;" href="dum-03" title="Dům 03 – Prodáno">3</a>
-      <!-- Pravý trojdům (2. etapa): domy 04–06 -->
-      <a class="house-pin neni"      style="left:60%;top:21%;" href="dum-04" title="Dům 04 – Zatím není k dispozici">4</a>
-      <a class="house-pin neni"      style="left:70%;top:16%;" href="dum-05" title="Dům 05 – Zatím není k dispozici">5</a>
-      <a class="house-pin neni"      style="left:79%;top:13%;" href="dum-06" title="Dům 06 – Zatím není k dispozici">6</a>
-    </div>
-    <div class="house-cards">
-      <a class="volny" href="dum-01"><span class="hc-num">Dům 01</span><span class="hc-st">Volný</span></a>
-      <a class="rezervace" href="dum-02"><span class="hc-num">Dům 02</span><span class="hc-st">Rezervace</span></a>
-      <a class="prodano" href="dum-03"><span class="hc-num">Dům 03</span><span class="hc-st">Prodáno</span></a>
-      <a class="neni" href="dum-04"><span class="hc-num">Dům 04</span><span class="hc-st">Připravujeme</span></a>
-      <a class="neni" href="dum-05"><span class="hc-num">Dům 05</span><span class="hc-st">Připravujeme</span></a>
-      <a class="neni" href="dum-06"><span class="hc-num">Dům 06</span><span class="hc-st">Připravujeme</span></a>
-    </div>
-    <div class="legend">
-      <span><i style="background:var(--status-volny)"></i> Volný</span>
-      <span><i style="background:var(--status-rezervace)"></i> Rezervace</span>
-      <span><i style="background:var(--status-prodano)"></i> Prodáno</span>
-      <span><i style="background:var(--status-neni)"></i> Zatím není k dispozici</span>
-    </div>
+<section class="section vp-wrap">
+  <div class="vp-head">
+    <p class="vp-eyebrow">Situace areálu · 2 trojdomy · 6 domů</p>
+    <h2>Vyberte si svůj dům</h2>
+    <p>Najeďte na číslo domu (na mobilu ťukněte) — ukáže se karta domu. Přes tlačítko otevřete jeho kompletní přehled.</p>
+  </div>
 
+  <div class="vp-plan">
+    <div class="vp-stage" id="stage">
+      <img class="vp-base" src="assets/img/vyber-domu.jpg" width="1920" height="1047" fetchpriority="high" decoding="async" alt="Axonometrický plán areálu Rezidence Padochov s domy 1–6">
+
+      <div class="vp-hot st-neni" data-id="06" data-place="center" style="left:26%;top:33%;">
+        <a class="vp-pin" href="dum-06" aria-label="Dům 06 – připravujeme, 5+kk, cca 112 m²">06<i class="vp-dot"></i></a>
+        <div class="vp-pop"><div class="vp-card">
+          <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Připravujeme</span></div>
+          <div class="vp-body vp-layer"><div class="vp-title">Dům 06</div>
+            <p class="vp-specs">5+kk · koncový · cca 112 m² · 2 stání · 2. etapa</p>
+            <div class="vp-row"><span class="vp-price">Na dotaz</span></div>
+            <a class="vp-cta" href="dum-06" tabindex="-1">Kompletní přehled →</a></div>
+        </div></div>
+      </div>
+
+      <div class="vp-hot st-neni" data-id="05" data-place="center" style="left:35%;top:28%;">
+        <a class="vp-pin" href="dum-05" aria-label="Dům 05 – připravujeme, 5+kk, cca 133 m²">05<i class="vp-dot"></i></a>
+        <div class="vp-pop"><div class="vp-card">
+          <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Připravujeme</span></div>
+          <div class="vp-body vp-layer"><div class="vp-title">Dům 05</div>
+            <p class="vp-specs">5+kk · prostřední · cca 133 m² · 2 stání · 2. etapa</p>
+            <div class="vp-row"><span class="vp-price">Na dotaz</span></div>
+            <a class="vp-cta" href="dum-05" tabindex="-1">Kompletní přehled →</a></div>
+        </div></div>
+      </div>
+
+      <div class="vp-hot st-neni" data-id="04" data-place="center" style="left:47%;top:27%;">
+        <a class="vp-pin" href="dum-04" aria-label="Dům 04 – připravujeme, 5+kk, cca 112 m²">04<i class="vp-dot"></i></a>
+        <div class="vp-pop"><div class="vp-card">
+          <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Připravujeme</span></div>
+          <div class="vp-body vp-layer"><div class="vp-title">Dům 04</div>
+            <p class="vp-specs">5+kk · koncový · cca 112 m² · 2 stání · 2. etapa</p>
+            <div class="vp-row"><span class="vp-price">Na dotaz</span></div>
+            <a class="vp-cta" href="dum-04" tabindex="-1">Kompletní přehled →</a></div>
+        </div></div>
+      </div>
+
+      <div class="vp-hot st-volny" data-id="03" data-place="center" style="left:65%;top:20%;">
+        <a class="vp-pin" href="dum-03" aria-label="Dům 03 – volný, 5+kk, cca 112 m²">03<i class="vp-dot"></i></a>
+        <div class="vp-pop"><div class="vp-card">
+          <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Volný</span></div>
+          <div class="vp-body vp-layer"><div class="vp-title">Dům 03</div>
+            <p class="vp-specs">5+kk · koncový · cca 112 m² · 2 stání · 1. etapa</p>
+            <div class="vp-row"><span class="vp-price">10 475 000 Kč</span></div>
+            <a class="vp-cta" href="dum-03" tabindex="-1">Kompletní přehled →</a></div>
+        </div></div>
+      </div>
+
+      <div class="vp-hot st-volny" data-id="02" data-place="left" style="left:74%;top:15%;">
+        <a class="vp-pin" href="dum-02" aria-label="Dům 02 – volný, 5+kk, cca 133 m²">02<i class="vp-dot"></i></a>
+        <div class="vp-pop"><div class="vp-card">
+          <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Volný</span></div>
+          <div class="vp-body vp-layer"><div class="vp-title">Dům 02</div>
+            <p class="vp-specs">5+kk · prostřední · cca 133 m² · 2 stání · 1. etapa</p>
+            <div class="vp-row"><span class="vp-price">10 475 000 Kč</span></div>
+            <a class="vp-cta" href="dum-02" tabindex="-1">Kompletní přehled →</a></div>
+        </div></div>
+      </div>
+
+      <div class="vp-hot st-volny" data-id="01" data-place="left" style="left:86%;top:12%;">
+        <a class="vp-pin" href="dum-01" aria-label="Dům 01 – volný, 5+kk, cca 112 m²">01<i class="vp-dot"></i></a>
+        <div class="vp-pop"><div class="vp-card">
+          <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Volný</span></div>
+          <div class="vp-body vp-layer"><div class="vp-title">Dům 01</div>
+            <p class="vp-specs">5+kk · koncový · cca 112 m² · 2 stání · 1. etapa</p>
+            <div class="vp-row"><span class="vp-price">10 475 000 Kč</span></div>
+            <a class="vp-cta" href="dum-01" tabindex="-1">Kompletní přehled →</a></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vp-legend">
+    <span><i style="background:#6faa39"></i> Volný</span>
+    <span><i style="background:#d99a1c"></i> Rezervace</span>
+    <span><i style="background:#cf4a45"></i> Prodáno</span>
+    <span><i style="background:#9a9a9a"></i> Připravujeme</span>
+  </div>
+
+  <div class="vp-cenik">
     <h2 class="section-title">Ceník a parametry</h2>
     <div class="table-wrapper">
       <table>
-        <thead>
-          <tr>
-            <th>Číslo domu</th>
-            <th>Dispozice</th>
-            <th>Typ</th>
-            <th>Užitná plocha</th>
-            <th>Parkování</th>
-            <th>Status</th>
-            <th>Cena</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Číslo domu</th><th>Dispozice</th><th>Typ</th><th>Užitná plocha</th><th>Parkování</th><th>Status</th><th>Cena</th></tr></thead>
         <tbody>
-          <tr class="volny"><td><a href="dum-01">Dům 01</a></td><td>5+kk</td><td>koncový</td><td>cca 112 m²</td><td>2 stání</td><td>Volný</td><td>Koncept</td></tr>
-          <tr class="rezervace"><td><a href="dum-02">Dům 02</a></td><td>5+kk</td><td>prostřední</td><td>cca 133 m²</td><td>2 stání</td><td>Rezervace</td><td>Koncept</td></tr>
-          <tr class="prodano"><td><a href="dum-03">Dům 03</a></td><td>5+kk</td><td>koncový</td><td>cca 112 m²</td><td>2 stání</td><td>Prodáno</td><td>Koncept</td></tr>
-          <tr class="neni"><td><a href="dum-04">Dům 04</a></td><td>5+kk</td><td>koncový</td><td>cca 112 m²</td><td>2 stání</td><td>Zatím není k dispozici</td><td>Na dotaz</td></tr>
-          <tr class="neni"><td><a href="dum-05">Dům 05</a></td><td>5+kk</td><td>prostřední</td><td>cca 133 m²</td><td>2 stání</td><td>Zatím není k dispozici</td><td>Na dotaz</td></tr>
-          <tr class="neni"><td><a href="dum-06">Dům 06</a></td><td>5+kk</td><td>koncový</td><td>cca 112 m²</td><td>2 stání</td><td>Zatím není k dispozici</td><td>Na dotaz</td></tr>
+          <tr class="volny"><td data-label="Dům"><a href="dum-01">Dům 01</a></td><td data-label="Dispozice">5+kk</td><td data-label="Typ">koncový</td><td data-label="Užitná plocha">cca 112 m²</td><td data-label="Parkování">2 stání</td><td data-label="Status">Volný</td><td data-label="Cena">10 475 000 Kč</td></tr>
+          <tr class="volny"><td data-label="Dům"><a href="dum-02">Dům 02</a></td><td data-label="Dispozice">5+kk</td><td data-label="Typ">prostřední</td><td data-label="Užitná plocha">cca 133 m²</td><td data-label="Parkování">2 stání</td><td data-label="Status">Volný</td><td data-label="Cena">10 475 000 Kč</td></tr>
+          <tr class="volny"><td data-label="Dům"><a href="dum-03">Dům 03</a></td><td data-label="Dispozice">5+kk</td><td data-label="Typ">koncový</td><td data-label="Užitná plocha">cca 112 m²</td><td data-label="Parkování">2 stání</td><td data-label="Status">Volný</td><td data-label="Cena">10 475 000 Kč</td></tr>
+          <tr class="neni"><td data-label="Dům"><a href="dum-04">Dům 04</a></td><td data-label="Dispozice">5+kk</td><td data-label="Typ">koncový</td><td data-label="Užitná plocha">cca 112 m²</td><td data-label="Parkování">2 stání</td><td data-label="Status">Zatím není k dispozici</td><td data-label="Cena">Na dotaz</td></tr>
+          <tr class="neni"><td data-label="Dům"><a href="dum-05">Dům 05</a></td><td data-label="Dispozice">5+kk</td><td data-label="Typ">prostřední</td><td data-label="Užitná plocha">cca 133 m²</td><td data-label="Parkování">2 stání</td><td data-label="Status">Zatím není k dispozici</td><td data-label="Cena">Na dotaz</td></tr>
+          <tr class="neni"><td data-label="Dům"><a href="dum-06">Dům 06</a></td><td data-label="Dispozice">5+kk</td><td data-label="Typ">koncový</td><td data-label="Užitná plocha">cca 112 m²</td><td data-label="Parkování">2 stání</td><td data-label="Status">Zatím není k dispozici</td><td data-label="Cena">Na dotaz</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="margin-top:14px;font-family:var(--nexa-book);color:var(--grey);font-size:15px;">Výměry vycházejí z projektové dokumentace: koncové domy v trojdomu cca 112 m², prostřední domy cca 133 m². Každý dům má dvě parkovací stání, vlastní zahradu a terasu s pergolou.</p>
+    <p style="margin-top:14px;font-family:var(--nexa-book);color:var(--grey);font-size:15px;">Výměry vycházejí z projektové dokumentace: koncové domy v trojdomu cca 112 m², prostřední domy cca 133 m². Každý dům má dvě parkovací stání, vlastní zahradu a terasu s pergolou. Uvedené ceny jsou konečné — prodej je osvobozen od DPH.</p>
   </div>
 </section>
+
+<div class="vp-scrim" id="scrim"></div>
+<div class="vp-sheet" id="sheet" aria-live="polite"></div>
 
 <footer class="site-footer">
   <div class="container">
     <div class="logo"><img src="assets/img/REZIDENCE-PADOCHOV-Logo.png" alt="Rezidence Padochov"></div>
-    <nav class="footer-nav">
-      <ul>
-        <li><a href="/">Úvod</a></li>
-        <li><a href="lokalita">Lokalita</a></li>
-        <li><a href="o-projektu">O projektu</a></li>
-        <li><a href="nabizene-domy-a-cenik">Nabízené domy a ceník</a></li>
-        <li><a href="galerie">Galerie</a></li>
-        <li><a href="kontakt">Kontakt</a></li>
-      </ul>
-    </nav>
-    <div></div>
-    <div>
-      <p class="f-label">Makléř:</p>
-      <p class="f-name">Honza Čermák</p>
+    <nav class="footer-nav"><ul>
+      <li><a href="/">Úvod</a></li><li><a href="lokalita">Lokalita</a></li><li><a href="o-projektu">O projektu</a></li>
+      <li><a href="nabizene-domy-a-cenik">Nabízené domy a ceník</a></li><li><a href="galerie">Galerie</a></li><li><a href="kontakt">Kontakt</a></li>
+    </ul></nav><div></div>
+    <div><p class="f-label">Makléř:</p><p class="f-name">Honza Čermák</p>
       <p class="f-addr">Tolstého 562/35
 Brno-Žabovřesky
-616 00</p>
-      <p class="f-ic">IČ: 05808201</p>
-      <p class="f-copy">© 2025 REZIDENCE PADOCHOV</p>
-    </div>
+616 00</p><p class="f-ic">IČ: 05808201</p><p class="f-copy">© 2025 REZIDENCE PADOCHOV</p></div>
   </div>
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var touch  = window.matchMedia('(hover:none)').matches || ('ontouchstart' in window);
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var stage  = document.getElementById('stage');
+  var hots   = [].slice.call(document.querySelectorAll('.vp-hot'));
+  var openHot=null, enterT=null, leaveT=null, raf=null, lastEv=null;
+
+  function clampAndArrow(hot){
+    var card=hot.querySelector('.vp-card'), pin=hot.querySelector('.vp-pin');
+    hot.style.setProperty('--nudge','0px');
+    var sr=stage.getBoundingClientRect();
+    var cr=card.getBoundingClientRect(), pr=pin.getBoundingClientRect();
+    var pad=12, minL=Math.max(sr.left,pad), maxR=Math.min(sr.right, window.innerWidth-pad);
+    var dx=0;
+    if(cr.right>maxR) dx=maxR-cr.right; else if(cr.left<minL) dx=minL-cr.left;
+    hot.style.setProperty('--nudge',dx+'px');
+    var ax=(pr.left+pr.width/2)-(cr.left+dx);
+    card.style.setProperty('--arrow-x', Math.max(16,Math.min(ax,card.offsetWidth-16))+'px');
+  }
+  function open(hot){
+    if(openHot&&openHot!==hot) close(openHot);
+    hot.classList.add('open'); stage.classList.add('is-dim'); openHot=hot;
+    requestAnimationFrame(function(){ clampAndArrow(hot); });
+  }
+  function close(hot){
+    hot.classList.remove('open');
+    var c=hot.querySelector('.vp-card'); c.classList.remove('tilting'); c.style.transform='';
+    if(openHot===hot){ openHot=null; stage.classList.remove('is-dim'); }
+  }
+
+  if(!touch){
+    hots.forEach(function(hot){
+      var card=hot.querySelector('.vp-card');
+      hot.addEventListener('mouseenter',function(){
+        clearTimeout(leaveT);
+        if(openHot===hot) return;
+        enterT=setTimeout(function(){open(hot);},70);
+      });
+      hot.addEventListener('mouseleave',function(){
+        clearTimeout(enterT);
+        card.classList.remove('tilting'); card.style.transform='';
+        leaveT=setTimeout(function(){close(hot);},140);
+      });
+      hot.addEventListener('focusin',function(){open(hot);});
+      hot.addEventListener('focusout',function(){ if(!hot.contains(document.activeElement)) close(hot); });
+      if(reduce) return;
+      hot.addEventListener('mousemove',function(e){
+        lastEv=e;
+        if(raf) return;
+        raf=requestAnimationFrame(function(){
+          raf=null; if(openHot!==hot) return;
+          card.classList.add('tilting');
+          var r=card.getBoundingClientRect();
+          var nx=(lastEv.clientX-r.left)/r.width*2-1;
+          var ny=(lastEv.clientY-r.top )/r.height*2-1;
+          var MAX=6;
+          card.style.transform='rotateX('+(-ny*MAX).toFixed(2)+'deg) rotateY('+(nx*MAX).toFixed(2)+'deg)';
+        });
+      });
+    });
+    window.addEventListener('resize',function(){ if(openHot) clampAndArrow(openHot); });
+  }
+
+  if(touch){
+    document.body.classList.add('is-touch');
+    var scrim=document.getElementById('scrim'), sheet=document.getElementById('sheet'), cur=null;
+    function closeSheet(){ sheet.classList.remove('on'); scrim.classList.remove('on'); cur=null; }
+    hots.forEach(function(hot){
+      hot.querySelector('.vp-pin').addEventListener('click',function(e){
+        if(cur===hot) return;               // 2. ťuk = přejde na detail
+        e.preventDefault();
+        var card=hot.querySelector('.vp-card').cloneNode(true);
+        var cta=card.querySelector('.vp-cta'); if(cta) cta.removeAttribute('tabindex');
+        sheet.innerHTML=''; sheet.appendChild(card);
+        sheet.classList.add('on'); scrim.classList.add('on'); cur=hot;
+      });
+    });
+    scrim.addEventListener('click',closeSheet);
+  }
+})();
+</script>
 </body>
 </html>

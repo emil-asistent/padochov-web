@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Galerie — Rezidence Padochov</title>
 <meta name="description" content="Videoprohlídka, vizualizace a fotky projektu Rezidence Padochov – exteriér, interiér, okolí a dokončená stavba rodinných domů.">
-<link rel="icon" href="assets/img/REZIDENCE-PADOCHOV-Logo.png">
+<link rel="icon" type="image/svg+xml" href="assets/img/REZIDENCE-PADOCHOV-Symbol.svg">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -32,11 +32,15 @@
     <h1 style="font-size:clamp(34px,4.5vw,54px);">Galerie</h1>
     <p class="body-bold" style="font-size:20px;color:var(--text);max-width:820px;">Prohlédněte si video a fotografie nového projektu REZIDENCE PADOCHOV. Galerie je společná pro celý projekt; interiérové fotografie pocházejí ze vzorového domu č. 3.</p>
     <h2 class="h2-underline on-green" style="margin-top:24px;">Videoprohlídka</h2>
-    <div class="video-embed" style="background-image:url('assets/img/hero-2.jpg');background-size:cover;background-position:center;">
-      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:rgba(33,36,33,.55);color:#fff;padding:24px;">
-        <p style="font-family:var(--nexa-heavy);font-size:clamp(22px,3vw,30px);margin:0 0 10px;">Videoprohlídka se připravuje</p>
-        <p style="font-family:var(--nexa-book);font-size:clamp(15px,2vw,18px);margin:0;max-width:560px;opacity:.92;">Brzy sem doplníme video z dronu a interiérů. Mezitím si prohlédněte fotogalerii níže.</p>
-      </div>
+    <div class="video-embed">
+      <video class="tour-video" poster="assets/img/tour-poster.webp" preload="none" playsinline controls
+             data-mp4-1080="assets/video/tour-1080.mp4" data-mp4-720="assets/video/tour-720.mp4">
+        <source src="assets/video/tour-720.mp4" type="video/mp4">
+        Váš prohlížeč nepodporuje přehrávání videa.
+      </video>
+      <button class="tour-play" type="button" aria-label="Přehrát videoprohlídku">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -45,63 +49,63 @@
   <div class="container">
     <h2 class="h2-underline">Letecký pohled</h2>
     <div class="galerie galerie4">
-      <div class="g-item"><img src="assets/img/gallery/air-01.jpg" alt="Letecký pohled na čelní stranu trojdomu s parkovacím dvorem" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/air-02.jpg" alt="Letecký pohled na trojdům s fotovoltaikou a krajinou v pozadí" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/air-03.jpg" alt="Letecký pohled na trojdům se zadní terasou a zahradou" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/air-04.jpg" alt="Letecký pohled na oba trojdomy a okolní zástavbu" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/air-05.jpg" alt="Fotovoltaická elektrárna na ploché střeše" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/air-06.jpg" alt="Zadní strana trojdomu s terasou a velkými okny" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/air-01.webp" alt="Letecký pohled na čelní stranu trojdomu s parkovacím dvorem" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/air-02.webp" alt="Letecký pohled na trojdům s fotovoltaikou a krajinou v pozadí" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/air-03.webp" alt="Letecký pohled na trojdům se zadní terasou a zahradou" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/air-04.webp" alt="Letecký pohled na oba trojdomy a okolní zástavbu" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/air-05.webp" alt="Fotovoltaická elektrárna na ploché střeše" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/air-06.webp" alt="Zadní strana trojdomu s terasou a velkými okny" loading="lazy"></div>
     </div>
 
     <h2 class="h2-underline" style="margin-top:48px;">Exteriér</h2>
     <div class="galerie galerie4">
-      <div class="g-item"><img src="assets/img/gallery/ext-01.jpg" alt="Čelní pohled na trojdům s dlážděným dvorem" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/ext-02.jpg" alt="Zadní fasáda s velkou dlážděnou terasou a francouzskými okny" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/ext-03.jpg" alt="Zahradní strana trojdomu s prosklenými HS portály a terasou" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/ext-04.jpg" alt="Vstupní strana domu s dlážděným parkovacím dvorem" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/ext-05.jpg" alt="Boční a čelní pohled na trojdům s příjezdovou dlažbou" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/ext-06.jpg" alt="Zadní pohled na trojdům s terasou a zahradou" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/ext-01.webp" alt="Čelní pohled na trojdům s dlážděným dvorem" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/ext-02.webp" alt="Zadní fasáda s velkou dlážděnou terasou a francouzskými okny" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/ext-03.webp" alt="Zahradní strana trojdomu s prosklenými HS portály a terasou" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/ext-04.webp" alt="Vstupní strana domu s dlážděným parkovacím dvorem" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/ext-05.webp" alt="Boční a čelní pohled na trojdům s příjezdovou dlažbou" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/ext-06.webp" alt="Zadní pohled na trojdům s terasou a zahradou" loading="lazy"></div>
     </div>
 
     <h2 class="h2-underline" style="margin-top:48px;">Interiér – obývací pokoj s kuchyní</h2>
     <div class="galerie galerie4">
-      <div class="g-item"><img src="assets/img/gallery/ob-01.jpg" alt="Prostorný obývací pokoj s panoramatickým oknem a HS portálem na terasu" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/ob-02.jpg" alt="Obývací pokoj s kuchyňským koutem a prosklenou stěnou" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/ob-03.jpg" alt="Obývací pokoj s kuchyňským koutem, vinylová podlaha dub natur" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/ob-01.webp" alt="Prostorný obývací pokoj s panoramatickým oknem a HS portálem na terasu" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/ob-02.webp" alt="Obývací pokoj s kuchyňským koutem a prosklenou stěnou" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/ob-03.webp" alt="Obývací pokoj s kuchyňským koutem, vinylová podlaha dub natur" loading="lazy"></div>
     </div>
 
     <h2 class="h2-underline" style="margin-top:48px;">Interiér – vstup, chodby a schodiště</h2>
     <div class="galerie galerie4">
-      <div class="g-item"><img src="assets/img/gallery/hall-01.jpg" alt="Vstupní hala s dřevěným schodištěm a výhledem do obývacího pokoje" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/hall-02.jpg" alt="Chodba s interiérovými dveřmi a přechodem vinyl/dlažba" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/hall-03.jpg" alt="Dřevěné dubové schodiště do patra" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/hall-04.jpg" alt="Dřevěné zatáčející schodiště" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/hall-01.webp" alt="Vstupní hala s dřevěným schodištěm a výhledem do obývacího pokoje" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/hall-02.webp" alt="Chodba s interiérovými dveřmi a přechodem vinyl/dlažba" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/hall-03.webp" alt="Dřevěné dubové schodiště do patra" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/hall-04.webp" alt="Dřevěné zatáčející schodiště" loading="lazy"></div>
     </div>
 
     <h2 class="h2-underline" style="margin-top:48px;">Interiér – ložnice a pokoje</h2>
     <div class="galerie galerie4">
-      <div class="g-item"><img src="assets/img/gallery/room-01.jpg" alt="Pokoj s vinylovou podlahou a oknem s výhledem do zeleně" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/room-02.jpg" alt="Pokoj s rohovým oknem a výhledem do okolí" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/room-03.jpg" alt="Pokoj s výhledem na obec a kopce" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/room-04.jpg" alt="Pokoj s rohovým oknem" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/room-01.webp" alt="Pokoj s vinylovou podlahou a oknem s výhledem do zeleně" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/room-02.webp" alt="Pokoj s rohovým oknem a výhledem do okolí" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/room-03.webp" alt="Pokoj s výhledem na obec a kopce" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/room-04.webp" alt="Pokoj s rohovým oknem" loading="lazy"></div>
     </div>
 
     <h2 class="h2-underline" style="margin-top:48px;">Koupelny a WC</h2>
     <div class="galerie galerie4">
-      <div class="g-item"><img src="assets/img/gallery/bath-01.jpg" alt="Koupelna s dvojumyvadlem, vanou a sprchovým koutem, italský obklad" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/bath-02.jpg" alt="Koupelna s vanou, sprchovým koutem a žebříkovým radiátorem" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/bath-03.jpg" alt="Koupelna s walk-in sprchou a závěsným WC" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/bath-04.jpg" alt="Samostatné WC s velkoformátovým italským obkladem" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/bath-01.webp" alt="Koupelna s dvojumyvadlem, vanou a sprchovým koutem, italský obklad" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/bath-02.webp" alt="Koupelna s vanou, sprchovým koutem a žebříkovým radiátorem" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/bath-03.webp" alt="Koupelna s walk-in sprchou a závěsným WC" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/bath-04.webp" alt="Samostatné WC s velkoformátovým italským obkladem" loading="lazy"></div>
     </div>
 
     <h2 class="h2-underline" style="margin-top:48px;">Standardy a detaily</h2>
     <div class="galerie galerie4">
-      <div class="g-item"><img src="assets/img/gallery/det-01.jpg" alt="Umyvadlová skříňka v dekoru dub natur s keramickým umyvadlem" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/det-02.jpg" alt="Detail keramického umyvadla s chromovou baterií" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/det-03.jpg" alt="Detail sprchové baterie Grohe v zaskleném sprchovém koutu" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/det-04.jpg" alt="Kvalitní okenní parapet s výhledem do zeleně" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/det-05.jpg" alt="Detail vinylové podlahy dub natur a bezúchytkového nábytku" loading="lazy"></div>
-      <div class="g-item"><img src="assets/img/gallery/det-06.jpg" alt="Tepelné čerpadlo Alpha innotec u fasády domu" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/det-01.webp" alt="Umyvadlová skříňka v dekoru dub natur s keramickým umyvadlem" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/det-02.webp" alt="Detail keramického umyvadla s chromovou baterií" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/det-03.webp" alt="Detail sprchové baterie Grohe v zaskleném sprchovém koutu" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/det-04.webp" alt="Kvalitní okenní parapet s výhledem do zeleně" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/det-05.webp" alt="Detail vinylové podlahy dub natur a bezúchytkového nábytku" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/gallery/det-06.webp" alt="Tepelné čerpadlo Alpha innotec u fasády domu" loading="lazy"></div>
     </div>
 
     <h2 class="h2-underline" style="margin-top:48px;">Půdorysy</h2>
@@ -111,6 +115,51 @@
     </div>
 
     <p style="margin-top:28px;font-family:var(--nexa-book);color:var(--grey);">Zobrazené snímky jsou aktuální fotografie z realizace projektu (vzorový dům č. 3); některé interiéry jsou zachyceny před dokončením (montáž svítidel). Provedení standardů je v celém projektu shodné, jednotlivé domy se liší pouze půdorysem a orientací.</p>
+
+    <h2 class="h2-underline" style="margin-top:56px;">Realita × vizualizace</h2>
+    <p class="body-bold" style="color:var(--text);max-width:660px;">Domy předáváme prázdné, připravené k vašemu zařízení. Takto mohou pokoje vypadat po nastěhování.</p>
+
+    <div class="viz-pair">
+      <figure class="viz-shot"><img src="assets/img/gallery/room-03.webp" alt="Prázdný pokoj v patře s oknem" loading="lazy"><figcaption class="viz-tag">Realita</figcaption></figure>
+      <figure class="viz-shot"><img src="assets/img/viz-pracovna-1.webp" alt="Vizualizace zařízené pracovny" loading="lazy"><figcaption class="viz-tag viz-tag--v">Vizualizace</figcaption></figure>
+    </div>
+    <p class="viz-cap">Pracovna</p>
+
+    <div class="viz-pair" style="margin-top:26px;">
+      <figure class="viz-shot"><img src="assets/img/gallery/room-04.webp" alt="Prázdný dětský pokoj s oknem" loading="lazy"><figcaption class="viz-tag">Realita</figcaption></figure>
+      <figure class="viz-shot"><img src="assets/img/viz-detsky-1.webp" alt="Vizualizace zařízeného dětského pokoje" loading="lazy"><figcaption class="viz-tag viz-tag--v">Vizualizace</figcaption></figure>
+    </div>
+    <p class="viz-cap">Dětský pokoj</p>
+
+    <p class="body-bold" style="color:var(--text);font-size:16px;margin-top:30px;">Další pohledy na zařízení</p>
+    <div class="galerie galerie2" style="margin-top:6px;">
+      <div class="g-item"><img src="assets/img/viz-pracovna-2.webp" alt="Vizualizace zařízené pracovny – další pohled" loading="lazy"></div>
+      <div class="g-item"><img src="assets/img/viz-detsky-2.webp" alt="Vizualizace zařízeného dětského pokoje – další pohled" loading="lazy"></div>
+    </div>
+    <p style="margin-top:14px;font-family:var(--nexa-book);color:var(--grey);font-size:14px;">Vizualizace jsou ilustrační a slouží jako inspirace pro zařízení interiéru.</p>
+
+    <h2 class="h2-underline" style="margin-top:56px;">Krátce z rezidence</h2>
+    <p class="body-bold" style="color:var(--text);max-width:620px;">Neformální průvod domem s makléřem — pár krátkých záběrů z prohlídky.</p>
+    <div class="reels-grid">
+      <figure class="reel">
+        <div class="reel__frame">
+          <video class="reel-video" playsinline preload="none" controls poster="assets/img/reel-1-poster.webp" aria-label="Krátký průvod domem v Rezidenci Padochov">
+            <source src="assets/video/reel-1.mp4" type="video/mp4">
+          </video>
+          <button class="reel__play" type="button" aria-label="Přehrát video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <figcaption class="reel__cap">Průvod domem</figcaption>
+      </figure>
+      <figure class="reel">
+        <div class="reel__frame">
+          <video class="reel-video" playsinline preload="none" controls poster="assets/img/reel-2-poster.webp" aria-label="Výbava a parametry domu v Rezidenci Padochov">
+            <source src="assets/video/reel-2.mp4" type="video/mp4">
+          </video>
+          <button class="reel__play" type="button" aria-label="Přehrát video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <figcaption class="reel__cap">Výbava a parametry</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
