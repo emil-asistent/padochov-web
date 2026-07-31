@@ -152,13 +152,23 @@
     var vw = Math.min(window.innerWidth || 9999, (window.screen && screen.width) || 9999);
     var saveData = navigator.connection && navigator.connection.saveData;
     var want = (vw >= 900 && !saveData) ? tour.getAttribute('data-mp4-1080') : tour.getAttribute('data-mp4-720');
-    // s preload="none" se nic nestáhne, dokud uživatel nespustí přehrávání
-    if (src && want && src.getAttribute('src') !== want) { src.setAttribute('src', want); tour.load(); }
+    // Verzi přepínáme až při prvním spuštění. Volání load() hned po načtení stránky totiž
+    // navzdory preload="none" stáhne celý soubor (na desktopu 68 MB), i když si video nikdo nepustí.
+    var srcHotovy = false;
+    function tourNactiZdroj() {
+      if (srcHotovy) return;
+      srcHotovy = true;
+      if (src && want && src.getAttribute('src') !== want) { src.setAttribute('src', want); tour.load(); }
+    }
     function tourStart() {
+      tourNactiZdroj();
       if (vWrap) vWrap.classList.add('is-playing');
       var p = tour.play();
       if (p && p.catch) p.catch(function () {});
     }
+    // když uživatel míří na nativní tlačítko přehrávání, přepneme zdroj ještě před klikem
+    // (na 'play' už ne, load() by rozjeté přehrávání zastavil)
+    tour.addEventListener('pointerdown', tourNactiZdroj, { once: true });
     if (playBtn) playBtn.addEventListener('click', tourStart);
     tour.addEventListener('play', function () { if (vWrap) vWrap.classList.add('is-playing'); });
   }
