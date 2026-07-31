@@ -421,3 +421,10 @@ body.lb-open{overflow:hidden;}
 .faq-item p{font-family:var(--nexa-book);color:#5c584d;font-size:16px;line-height:1.6;margin:0;max-width:74ch;}
 .faq-item a{color:#15140f;text-decoration:underline;text-underline-offset:3px;}
 .faq-item a:hover{color:#4e8a2b;}
+
+.f-gdpr{font-family:var(--nexa-book);font-size:13.5px;color:var(--grey);line-height:1.5;margin:0 0 14px;max-width:62ch;}
+.f-gdpr a{color:var(--text);text-decoration:underline;text-underline-offset:3px;}
+.cta .f-gdpr{color:rgba(255,255,255,.78);}
+.cta .f-gdpr a{color:#fff;}
+.f-copy a{color:#cfcfcf;text-decoration:underline;text-underline-offset:3px;}
+.f-copy a:hover{color:var(--green);}
