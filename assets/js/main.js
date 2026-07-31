@@ -112,7 +112,7 @@
     var cur = 0;
     function lbRender() {
       var im = gImgs[cur];
-      lbImg.src = im.currentSrc || im.src;
+      lbImg.src = im.getAttribute('data-full') || im.currentSrc || im.src;
       lbImg.alt = im.alt || '';
       lbText.textContent = im.alt || '';
       lbCount.textContent = (cur + 1) + ' / ' + gImgs.length;
