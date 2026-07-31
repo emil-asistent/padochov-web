@@ -38,7 +38,6 @@ module.exports = async (req, res) => {
   const email = String(data.email || '').trim().slice(0, 200);
   const phone = String(data.phone || '').trim().slice(0, 60);
   const msg   = String(data.msg   || '').trim().slice(0, 5000);
-  const dum   = /^0[1-6]$/.test(String(data.dum || '').trim()) ? String(data.dum).trim() : '';
 
   if (!name || !email) return res.status(400).json({ ok: false, error: 'missing_fields' });
   if (!isEmail(email))  return res.status(400).json({ ok: false, error: 'bad_email' });
@@ -51,19 +50,15 @@ module.exports = async (req, res) => {
     connectionTimeout: 12000, greetingTimeout: 8000, socketTimeout: 20000,
   });
 
-  const subject = dum
-    ? `Nová poptávka: Dům ${dum} · ${name}`
-    : `Nová poptávka z webu Rezidence Padochov: ${name}`;
+  const subject = `Nová poptávka z webu Rezidence Padochov: ${name}`;
   const text =
     `Nová nezávazná poptávka z webu Rezidence Padochov.\n\n` +
-    (dum ? `Zájem o dům: Dům ${dum}\n` : '') +
     `Jméno a příjmení: ${name}\nE-mail: ${email}\nTelefon: ${phone || 'neuvedeno'}\n\n` +
     `Zpráva:\n${msg || '(bez zprávy)'}\n`;
   const html =
     `<div style="font-family:'Segoe UI',Arial,sans-serif;color:#141414;line-height:1.5">` +
     `<h2 style="margin:0 0 12px;color:#141414">Nová poptávka z webu Rezidence Padochov</h2>` +
     `<table style="border-collapse:collapse;font-size:15px">` +
-    (dum ? `<tr><td style="padding:2px 14px 2px 0;color:#3f7d2f"><b>Zájem o dům</b></td><td><b>Dům ${esc(dum)}</b></td></tr>` : '') +
     `<tr><td style="padding:2px 14px 2px 0;color:#3f7d2f"><b>Jméno</b></td><td>${esc(name)}</td></tr>` +
     `<tr><td style="padding:2px 14px 2px 0;color:#3f7d2f"><b>E-mail</b></td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>` +
     `<tr><td style="padding:2px 14px 2px 0;color:#3f7d2f"><b>Telefon</b></td><td>${esc(phone) || 'neuvedeno'}</td></tr>` +

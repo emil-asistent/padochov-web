@@ -78,8 +78,8 @@
 <header class="site-header">
   <div class="container">
     <a class="logo" href="/"><img src="assets/img/REZIDENCE-PADOCHOV-Logo.png" alt="Rezidence Padochov"></a>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
-    <nav class="main-nav">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hlavni-menu"><i></i><i></i><i></i></button>
+    <nav class="main-nav" id="hlavni-menu">
       <ul>
         <li><a href="/">Úvod</a></li>
         <li><a href="lokalita">Lokalita</a></li>
@@ -88,6 +88,11 @@
         <li><a href="galerie">Galerie</a></li>
         <li><a href="kontakt" class="active">Kontakt</a></li>
       </ul>
+      <div class="nav-foot">
+        <p class="nav-foot__lbl">Makléř projektu</p>
+        <a class="nav-foot__tel" href="tel:+420733411446">+420 733 411 446</a><br>
+        <a class="nav-foot__mail" href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -161,9 +166,7 @@
         <div class="f-email"><label for="kf-email">E-mailová adresa</label><input id="kf-email" type="email" name="email" autocomplete="email" required></div>
         <div class="f-tel"><label for="kf-tel">Telefon <span class="req">(nepovinné)</span></label><input id="kf-tel" type="tel" name="telefon" autocomplete="tel"></div>
         <div class="f-msg"><label for="kf-msg">Zpráva <span class="req">(nepovinné)</span></label><textarea id="kf-msg" name="message" rows="4" placeholder="Který dům vás zajímá, kdy byste chtěli bydlet…"></textarea></div>
-        <input type="hidden" name="dum" value="">
         <div class="f-hp" aria-hidden="true"><label for="kf-company">Nevyplňujte</label><input id="kf-company" type="text" name="company" tabindex="-1" autocomplete="off"></div>
-        <p class="f-gdpr">Odesláním nám dáváte své údaje k tomu, abychom vám na poptávku odpověděli. Podrobnosti jsou v <a href="ochrana-osobnich-udaju">zpracování osobních údajů</a>.</p>
         <div class="f-actions"><button type="submit" class="btn btn--dark">Odeslat poptávku</button><p class="form-status" role="status" aria-live="polite"></p></div>
       </form>
     </div>
@@ -183,20 +186,15 @@
         <li><a href="kontakt">Kontakt</a></li>
       </ul>
     </nav>
+    <div></div>
     <div>
-      <p class="f-label">Projekt:</p>
-      <p class="f-name">Rezidence Padochov</p>
-      <p class="f-addr">Padochov, 664 91 Oslavany
-okres Brno-venkov
-Jihomoravský kraj</p>
-    </div>
-    <div>
-      <p class="f-label">Prodej zajišťuje:</p>
+      <p class="f-label">Makléř:</p>
       <p class="f-name">Honza Čermák</p>
-      <p class="f-addr"><a href="tel:+420733411446">+420 733 411 446</a>
-<a href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a></p>
+      <p class="f-addr">Tolstého 562/35
+Brno-Žabovřesky
+616 00</p>
       <p class="f-ic">IČ: 05808201</p>
-      <p class="f-copy">© 2026 REZIDENCE PADOCHOV<br><a href="/ochrana-osobnich-udaju">Zpracování osobních údajů</a></p>
+      <p class="f-copy">© 2025 REZIDENCE PADOCHOV</p>
     </div>
   </div>
 </footer>

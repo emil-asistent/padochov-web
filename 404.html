@@ -13,8 +13,8 @@
 <header class="site-header">
   <div class="container">
     <a class="logo" href="/"><img src="/assets/img/REZIDENCE-PADOCHOV-Logo.png" alt="Rezidence Padochov"></a>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
-    <nav class="main-nav">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hlavni-menu"><i></i><i></i><i></i></button>
+    <nav class="main-nav" id="hlavni-menu">
       <ul>
         <li><a href="/">Úvod</a></li>
         <li><a href="/lokalita">Lokalita</a></li>
@@ -23,6 +23,11 @@
         <li><a href="/galerie">Galerie</a></li>
         <li><a href="/kontakt" class="active">Kontakt</a></li>
       </ul>
+      <div class="nav-foot">
+        <p class="nav-foot__lbl">Makléř projektu</p>
+        <a class="nav-foot__tel" href="tel:+420733411446">+420 733 411 446</a><br>
+        <a class="nav-foot__mail" href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -31,16 +36,15 @@
   <div class="container">
     <p style="font-family:var(--nexa-bold);text-transform:uppercase;letter-spacing:.16em;font-size:13px;color:var(--grey);margin:0 0 10px;">Chyba 404</p>
     <h1 style="font-size:clamp(34px,4.5vw,54px);margin:0 0 14px;">Tuhle stránku jsme nenašli</h1>
-    <p class="body-bold" style="color:var(--text);max-width:60ch;">Odkaz je nejspíš starý nebo se při kopírování zlomil. Tady jsou místa, kam jste nejspíš mířili:</p>
+    <p class="body-bold" style="color:var(--text);max-width:60ch;">Odkaz je nejspíš starý nebo se při kopírování zlomil.</p>
     <p class="volne-odkazy" style="margin-top:20px;max-width:70ch;">
       <a href="/nabizene-domy-a-cenik">Nabízené domy a ceník</a>
       <a href="/lokalita">Lokalita</a>
       <a href="/o-projektu">O projektu</a>
       <a href="/standardy">Standardy</a>
-      <a href="/galerie">Galerie a videoprohlídka</a>
+      <a href="/galerie">Galerie</a>
       <a href="/kontakt">Kontakt</a>
     </p>
-    <p style="font-family:var(--nexa-book);color:var(--grey);margin-top:26px;max-width:70ch;">Volné jsou domy <a href="/dum-01" style="color:#15140f;text-decoration:underline;text-underline-offset:3px;">01</a>, <a href="/dum-02" style="color:#15140f;text-decoration:underline;text-underline-offset:3px;">02</a> a <a href="/dum-03" style="color:#15140f;text-decoration:underline;text-underline-offset:3px;">03</a>. Když si nevíte rady, zavolejte makléři na <a href="tel:+420733411446" style="color:#15140f;text-decoration:underline;text-underline-offset:3px;">+420 733 411 446</a>.</p>
     <a class="btn" href="/" style="margin-top:26px;">Zpět na úvod</a>
   </div>
 </section>
@@ -58,20 +62,15 @@
         <li><a href="/kontakt">Kontakt</a></li>
       </ul>
     </nav>
+    <div></div>
     <div>
-      <p class="f-label">Projekt:</p>
-      <p class="f-name">Rezidence Padochov</p>
-      <p class="f-addr">Padochov, 664 91 Oslavany
-okres Brno-venkov
-Jihomoravský kraj</p>
-    </div>
-    <div>
-      <p class="f-label">Prodej zajišťuje:</p>
+      <p class="f-label">Makléř:</p>
       <p class="f-name">Honza Čermák</p>
-      <p class="f-addr"><a href="tel:+420733411446">+420 733 411 446</a>
-<a href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a></p>
+      <p class="f-addr">Tolstého 562/35
+Brno-Žabovřesky
+616 00</p>
       <p class="f-ic">IČ: 05808201</p>
-      <p class="f-copy">© 2026 REZIDENCE PADOCHOV<br><a href="/ochrana-osobnich-udaju">Zpracování osobních údajů</a></p>
+      <p class="f-copy">© 2025 REZIDENCE PADOCHOV</p>
     </div>
   </div>
 </footer>

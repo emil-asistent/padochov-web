@@ -1,16 +1,46 @@
 // REZIDENCE PADOCHOV — statický web
 (function () {
-  // --- Mobilní menu ---
+  // --- Mobilní menu (panel přes celou výšku, zámek scrollu, Esc) ---
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.querySelector('.main-nav');
   if (toggle && nav) {
+    nav.setAttribute('role', 'dialog');
+    nav.setAttribute('aria-modal', 'true');
+    nav.setAttribute('aria-label', 'Hlavní menu');
+    var header = toggle.closest('.site-header');
+
+    function setNav(open) {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Zavřít menu' : 'Menu');
+      document.body.classList.toggle('nav-open', open);
+      // obsah pod panelem vyřadit z tabulátoru i z odečítače
+      Array.prototype.forEach.call(document.body.children, function (el) {
+        if (el === header || el.tagName === 'SCRIPT') return;
+        if (open) el.setAttribute('inert', ''); else el.removeAttribute('inert');
+      });
+    }
+    function closeNav() { if (nav.classList.contains('open')) setNav(false); }
+
     toggle.addEventListener('click', function () {
-      nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+      setNav(!nav.classList.contains('open'));
     });
+
     nav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { nav.classList.remove('open'); });
+      a.addEventListener('click', function () { closeNav(); });
     });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('open')) { closeNav(); toggle.focus(); }
+    });
+
+    // po otočení / zvětšení na desktop menu zavřít, ať nezůstane zamčený scroll
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 980) closeNav();
+    });
+
+    // ze zpětného tlačítka prohlížeče (bfcache) přijít vždy se zavřeným menu
+    window.addEventListener('pageshow', function () { closeNav(); });
   }
 
   // --- Hero slider (auto, jako původní auto="on") ---
@@ -52,23 +82,12 @@
       statusEl.className = 'form-status' + (kind ? ' is-' + kind : '');
     }
     function val(n) { var el = form.querySelector('[name=' + n + ']'); return el ? el.value.trim() : ''; }
-    // předvyplnění, o který dům jde (odkaz z detailu domu: /kontakt?dum=01)
-    try {
-      var dumParam = (new URLSearchParams(window.location.search)).get('dum') || '';
-      if (/^0[1-6]$/.test(dumParam)) {
-        var hidden = form.querySelector('input[name="dum"]');
-        if (hidden) hidden.value = dumParam;
-        var msgEl = form.querySelector('[name="message"]');
-        if (msgEl && !msgEl.value) msgEl.value = 'Mám zájem o Dům ' + dumParam + '. ';
-      }
-    } catch (err) {}
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = val('name'), email = val('email');
       if (!name || !email) { setStatus('Vyplňte prosím jméno a e-mailovou adresu.', 'err'); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus('Zkontrolujte prosím e-mailovou adresu.', 'err'); return; }
-      var payload = { name: name, email: email, phone: val('telefon'), msg: val('message'), company: val('company'), dum: val('dum') };
+      var payload = { name: name, email: email, phone: val('telefon'), msg: val('message'), company: val('company') };
       if (btn) { btn.disabled = true; btn.textContent = 'Odesílám…'; }
       setStatus('', '');
       fetch('/api/contact', {

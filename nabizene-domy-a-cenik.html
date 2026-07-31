@@ -173,67 +173,6 @@
    ]
   },
   {
-   "@type": "FAQPage",
-   "mainEntity": [
-    {
-     "@type": "Question",
-     "name": "Kde přesně Rezidence Padochov stojí?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Domy stojí v Padochově, který je částí města Oslavany v okrese Brno-venkov v Jihomoravském kraji. Z Ivančic to je autem 5 minut, do Oslavan 2 kilometry a do centra Brna zhruba 30 minut."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Kolik domů je ještě volných a za kolik?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Volné jsou domy 01, 02 a 03 z první etapy, cena je 10 475 000 Kč a je konečná, prodej je osvobozen od DPH. Domy 04, 05 a 06 patří do druhé etapy, jejíž výstavbu zahájíme v 1. čtvrtletí 2027, a jejich cena je zatím na dotaz."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Jaký je rozdíl mezi koncovým a prostředním domem?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Koncový dům má užitnou plochu cca 112 m², prostřední cca 133 m². Dispozice je u obou 5+kk na dvou podlažích a standardy jsou v celém projektu shodné, liší se jen poloha domu v trojdomu a jeho orientace."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Co je v ceně domu?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Dům se prodává jako novostavba v nevybaveném stavu, tedy bez nábytku a spotřebičů. V ceně je tepelné čerpadlo, fotovoltaika 5,4 kWp, podlahové vytápění, izolační trojskla, podlahy, dlažby i obklady, vlastní zahrada a dvě parkovací stání před domem. Kompletní výčet najdete ve standardech."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Kolik stojí provoz takového domu?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Domy mají energetickou náročnost PENB B, tepelné čerpadlo vzduch/voda s funkcí chlazení a vlastní fotovoltaiku o výkonu 5,4 kWp. Konkrétní odhad nákladů podle počtu osob v domácnosti s vámi projde makléř."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Je v okolí školka a škola?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Mateřská škola Duha je necelých 100 metrů od domů. Základní škola, lékaři a větší obchody jsou v Oslavanech 2 kilometry daleko a v Ivančicích, kam jezdí linky IDS JMK ze tří zastávek přímo v obci. Podrobnosti jsou na stránce lokalita."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Jak probíhá prohlídka a rezervace domu?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Ozvěte se makléři Honzovi Čermákovi na +420 733 411 446 nebo na reality@cermakhonza.cz, případně vyplňte poptávkový formulář. Domluví s vámi termín prohlídky a projde s vámi rezervaci i financování."
-     }
-    }
-   ]
-  },
-  {
    "@type": "BreadcrumbList",
    "itemListElement": [
     {
@@ -273,7 +212,7 @@
 .vp-stage.is-dim .vp-base{filter:brightness(.9) saturate(.94);}
 
 /* --- hotspot (bod, přesně umístěný) --- */
-.vp-hot{position:absolute;transform:translate(-50%,-50%);z-index:3;
+.vp-hot{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);z-index:3;
   --px:-50%; --arrow:50%; --origin:top center;}
 .vp-hot[data-place="left"]{--px:calc(-100% + 30px); --arrow:calc(100% - 30px); --origin:top right;}
 .vp-hot.open,.vp-hot:focus-within{z-index:40;}
@@ -361,6 +300,37 @@ body.is-touch .vp-pop{display:none;}
 .vp-sheet .vp-card{transform:none !important;}
 
 @media(max-width:900px){ .vp-plan{z-index:auto;} }
+/* ---------- MOBIL: přiblížený plán areálu ----------
+   Render se na malé obrazovce ořízne na samotné domy
+   (x 15–90 %, y 0,5–78 % originálu) a jde přes celou šířku,
+   ořez zvětší domy 1,33× a přes celou šířku vyjdou zhruba 1,5× větší než dřív. Piny mají vlastní
+   souřadnice --xm/--ym = střed střechy svého domu, takže
+   se navzájem nepřekrývají a sedí na správný dům. */
+@media(max-width:700px){
+  .vp-head{padding-bottom:20px;}
+  .vp-plan{padding:0;}
+  .vp-stage{overflow:hidden;border-radius:0;height:0;padding-bottom:56.35%;}
+  .vp-stage::after{content:"";position:absolute;inset:0;pointer-events:none;
+    box-shadow:inset 0 0 0 1px rgba(20,18,12,.06);}
+  .vp-frame{position:absolute;top:-0.645%;left:-20%;width:133.333%;}
+
+  .vp-hot{left:var(--xm,var(--x));top:var(--ym,var(--y));}
+  .vp-pin{width:28px;height:28px;font-size:12.5px;border-width:1.5px;}
+  /* dotyková plocha 40 px, aniž by kolečko narostlo */
+  .vp-pin::before{content:"";position:absolute;inset:-6px;border-radius:50%;}
+  /* v úzkém okně se hover karta nemá kam vejít, používá se spodní panel */
+  .vp-pop{display:none;}
+  .vp-dot{width:9px;height:9px;right:-2px;top:-2px;border-width:1.5px;}
+  .vp-legend{margin-top:22px;gap:14px 20px;font-size:13px;}
+  .vp-etapy{gap:4px 20px;}
+}
+/* nejužší telefony: menší kolečka, ať se dotykové plochy nepřekrývají */
+@media(max-width:359px){
+  .vp-pin{width:24px;height:24px;font-size:11px;}
+  .vp-pin::before{inset:-3px;}
+  .vp-dot{width:8px;height:8px;}
+}
+
 @media (prefers-reduced-motion:reduce){
   .vp-pop{transition-duration:.001s;}
   .vp-hot.open .vp-photo img{animation:none;transform:scale(1.03);}
@@ -374,19 +344,25 @@ body.is-touch .vp-pop{display:none;}
 <header class="site-header">
   <div class="container">
     <a class="logo" href="/"><img src="assets/img/REZIDENCE-PADOCHOV-Logo.png" alt="Rezidence Padochov"></a>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
-    <nav class="main-nav"><ul>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hlavni-menu"><i></i><i></i><i></i></button>
+    <nav class="main-nav" id="hlavni-menu"><ul>
       <li><a href="/">Úvod</a></li><li><a href="lokalita">Lokalita</a></li>
       <li><a href="o-projektu">O projektu</a></li><li><a href="nabizene-domy-a-cenik" class="active">Nabízené domy a ceník</a></li>
       <li><a href="galerie">Galerie</a></li><li><a href="kontakt">Kontakt</a></li>
-    </ul></nav>
+    </ul>
+      <div class="nav-foot">
+        <p class="nav-foot__lbl">Makléř projektu</p>
+        <a class="nav-foot__tel" href="tel:+420733411446">+420 733 411 446</a><br>
+        <a class="nav-foot__mail" href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a>
+      </div>
+    </nav>
   </div>
 </header>
 
 <section class="section bg-green">
   <div class="container">
     <h1 style="font-size:clamp(34px,4.5vw,54px);">Nabízené domy a ceník</h1>
-    <p class="body-bold" style="font-size:20px;color:var(--text);max-width:760px;">Šest novostaveb rodinných domů 5+kk na prodej v Padochově u Ivančic, okres Brno-venkov. Domy stojí ve dvou řadových trojdomech, každý má vlastní zahradu a dvě parkovací stání. Vyberte si dům v plánu areálu.</p>
+    <p class="body-bold" style="font-size:20px;color:var(--text);max-width:720px;">Šest rodinných domů 5+kk ve dvou trojdomech. Vyberte si dům v plánu areálu.</p>
   </div>
 </section>
 
@@ -398,10 +374,10 @@ body.is-touch .vp-pop{display:none;}
   </div>
 
   <div class="vp-plan">
-    <div class="vp-stage" id="stage">
+    <div class="vp-stage" id="stage"><div class="vp-frame">
       <img class="vp-base" src="assets/img/vyber-domu.webp" width="1920" height="1047" fetchpriority="high" decoding="async" alt="Axonometrický plán areálu Rezidence Padochov s domy 1 až 6">
 
-      <div class="vp-hot st-neni" data-id="06" data-place="center" style="left:26%;top:33%;">
+      <div class="vp-hot st-neni" data-id="06" data-place="center" style="--x:26%;--y:33%;--xm:28.7%;--ym:42.9%;">
         <a class="vp-pin" href="dum-06" aria-label="Dům 06, připravujeme, 5+kk, cca 112 m²">06<i class="vp-dot"></i></a>
         <div class="vp-pop"><div class="vp-card">
           <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Připravujeme</span></div>
@@ -412,7 +388,7 @@ body.is-touch .vp-pop{display:none;}
         </div></div>
       </div>
 
-      <div class="vp-hot st-neni" data-id="05" data-place="center" style="left:35%;top:28%;">
+      <div class="vp-hot st-neni" data-id="05" data-place="center" style="--x:35%;--y:28%;--xm:39.4%;--ym:36.7%;">
         <a class="vp-pin" href="dum-05" aria-label="Dům 05, připravujeme, 5+kk, cca 133 m²">05<i class="vp-dot"></i></a>
         <div class="vp-pop"><div class="vp-card">
           <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Připravujeme</span></div>
@@ -423,7 +399,7 @@ body.is-touch .vp-pop{display:none;}
         </div></div>
       </div>
 
-      <div class="vp-hot st-neni" data-id="04" data-place="center" style="left:47%;top:27%;">
+      <div class="vp-hot st-neni" data-id="04" data-place="center" style="--x:47%;--y:27%;--xm:49.3%;--ym:30.9%;">
         <a class="vp-pin" href="dum-04" aria-label="Dům 04, připravujeme, 5+kk, cca 112 m²">04<i class="vp-dot"></i></a>
         <div class="vp-pop"><div class="vp-card">
           <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Připravujeme</span></div>
@@ -434,7 +410,7 @@ body.is-touch .vp-pop{display:none;}
         </div></div>
       </div>
 
-      <div class="vp-hot st-volny" data-id="03" data-place="center" style="left:65%;top:20%;">
+      <div class="vp-hot st-volny" data-id="03" data-place="center" style="--x:65%;--y:20%;--xm:65.9%;--ym:18.0%;">
         <a class="vp-pin" href="dum-03" aria-label="Dům 03, volný, 5+kk, cca 112 m²">03<i class="vp-dot"></i></a>
         <div class="vp-pop"><div class="vp-card">
           <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Volný</span></div>
@@ -445,7 +421,7 @@ body.is-touch .vp-pop{display:none;}
         </div></div>
       </div>
 
-      <div class="vp-hot st-volny" data-id="02" data-place="left" style="left:74%;top:15%;">
+      <div class="vp-hot st-volny" data-id="02" data-place="left" style="--x:74%;--y:15%;--xm:73.5%;--ym:14.0%;">
         <a class="vp-pin" href="dum-02" aria-label="Dům 02, volný, 5+kk, cca 133 m²">02<i class="vp-dot"></i></a>
         <div class="vp-pop"><div class="vp-card">
           <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Volný</span></div>
@@ -456,7 +432,7 @@ body.is-touch .vp-pop{display:none;}
         </div></div>
       </div>
 
-      <div class="vp-hot st-volny" data-id="01" data-place="left" style="left:86%;top:12%;">
+      <div class="vp-hot st-volny" data-id="01" data-place="left" style="--x:86%;--y:12%;--xm:80.7%;--ym:10.3%;">
         <a class="vp-pin" href="dum-01" aria-label="Dům 01, volný, 5+kk, cca 112 m²">01<i class="vp-dot"></i></a>
         <div class="vp-pop"><div class="vp-card">
           <div class="vp-photo vp-layer"><img src="assets/img/gallery/ext-01.webp" alt="" aria-hidden="true"><span class="vp-chip"><b></b> Volný</span></div>
@@ -466,7 +442,7 @@ body.is-touch .vp-pop{display:none;}
             <a class="vp-cta" href="dum-01" tabindex="-1">Kompletní přehled →</a></div>
         </div></div>
       </div>
-    </div>
+    </div></div>
   </div>
 
   <div class="vp-legend">
@@ -499,32 +475,6 @@ body.is-touch .vp-pop{display:none;}
     <p style="margin-top:14px;font-family:var(--nexa-book);color:var(--grey);font-size:15px;">Výměry vycházejí z projektové dokumentace: koncové domy v trojdomu cca 112 m², prostřední domy cca 133 m². Každý dům má dvě parkovací stání, vlastní zahradu a terasu s pergolou. Uvedené ceny jsou konečné, prodej je osvobozen od DPH. Domy 04 až 06 patří do druhé etapy, její výstavbu zahájíme v 1. čtvrtletí 2027.</p>
   </div>
 
-  <div class="vp-cenik" style="margin-top:44px;">
-    <div class="volne-box">
-      <div>
-        <h2 style="margin:0 0 8px;font-size:clamp(24px,2.6vw,32px);">Volné jsou domy 01, 02 a 03</h2>
-        <p style="margin:0;font-family:var(--nexa-book);color:#5c584d;">Všechny tři jsou z dokončené první etapy, k nastěhování bez čekání. Zavolejte makléři a domluvte si prohlídku.</p>
-        <p class="volne-odkazy"><a href="dum-01">Dům 01 · 112 m²</a><a href="dum-02">Dům 02 · 133 m²</a><a href="dum-03">Dům 03 · 112 m²</a></p>
-      </div>
-      <div class="volne-akce">
-        <a class="btn btn--dark" href="tel:+420733411446">Zavolat: +420 733 411 446</a>
-        <a class="btn" href="kontakt">Napsat poptávku</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="vp-cenik faq" style="margin-top:54px;">
-    <h2 class="section-title">Časté dotazy</h2>
-    <div class="faq-list">
-      <div class="faq-item"><h3>Kde přesně Rezidence Padochov stojí?</h3><p>Domy stojí v Padochově, který je částí města Oslavany v okrese Brno-venkov v Jihomoravském kraji. Z Ivančic to je autem 5 minut, do Oslavan 2 kilometry a do centra Brna zhruba 30 minut.</p></div>
-      <div class="faq-item"><h3>Kolik domů je ještě volných a za kolik?</h3><p>Volné jsou domy 01, 02 a 03 z první etapy, cena je 10 475 000 Kč a je konečná, prodej je osvobozen od DPH. Domy 04, 05 a 06 patří do druhé etapy, jejíž výstavbu zahájíme v 1. čtvrtletí 2027, a jejich cena je zatím na dotaz.</p></div>
-      <div class="faq-item"><h3>Jaký je rozdíl mezi koncovým a prostředním domem?</h3><p>Koncový dům má užitnou plochu cca 112 m², prostřední cca 133 m². Dispozice je u obou 5+kk na dvou podlažích a standardy jsou v celém projektu shodné, liší se jen poloha domu v trojdomu a jeho orientace.</p></div>
-      <div class="faq-item"><h3>Co je v ceně domu?</h3><p>Dům se prodává jako novostavba v nevybaveném stavu, tedy bez nábytku a spotřebičů. V ceně je tepelné čerpadlo, fotovoltaika 5,4 kWp, podlahové vytápění, izolační trojskla, podlahy, dlažby i obklady, vlastní zahrada a dvě parkovací stání před domem. Kompletní výčet najdete ve <a href="standardy">standardech</a>.</p></div>
-      <div class="faq-item"><h3>Kolik stojí provoz takového domu?</h3><p>Domy mají energetickou náročnost PENB B, tepelné čerpadlo vzduch/voda s funkcí chlazení a vlastní fotovoltaiku o výkonu 5,4 kWp. Konkrétní odhad nákladů podle počtu osob v domácnosti s vámi projde makléř.</p></div>
-      <div class="faq-item"><h3>Je v okolí školka a škola?</h3><p>Mateřská škola Duha je necelých 100 metrů od domů. Základní škola, lékaři a větší obchody jsou v Oslavanech 2 kilometry daleko a v Ivančicích, kam jezdí linky IDS JMK ze tří zastávek přímo v obci. Podrobnosti jsou na stránce <a href="lokalita">lokalita</a>.</p></div>
-      <div class="faq-item"><h3>Jak probíhá prohlídka a rezervace domu?</h3><p>Ozvěte se makléři Honzovi Čermákovi na <a href="tel:+420733411446">+420 733 411 446</a> nebo na <a href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a>, případně vyplňte <a href="kontakt">poptávkový formulář</a>. Domluví s vámi termín prohlídky a projde s vámi rezervaci i financování.</p></div>
-    </div>
-  </div>
 </section>
 
 <div class="vp-scrim" id="scrim"></div>
@@ -537,20 +487,15 @@ body.is-touch .vp-pop{display:none;}
       <li><a href="/">Úvod</a></li><li><a href="lokalita">Lokalita</a></li><li><a href="o-projektu">O projektu</a></li>
       <li><a href="nabizene-domy-a-cenik">Nabízené domy a ceník</a></li><li><a href="galerie">Galerie</a></li><li><a href="kontakt">Kontakt</a></li>
     </ul></nav>
+    <div></div>
     <div>
-      <p class="f-label">Projekt:</p>
-      <p class="f-name">Rezidence Padochov</p>
-      <p class="f-addr">Padochov, 664 91 Oslavany
-okres Brno-venkov
-Jihomoravský kraj</p>
-    </div>
-    <div>
-      <p class="f-label">Prodej zajišťuje:</p>
+      <p class="f-label">Makléř:</p>
       <p class="f-name">Honza Čermák</p>
-      <p class="f-addr"><a href="tel:+420733411446">+420 733 411 446</a>
-<a href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a></p>
+      <p class="f-addr">Tolstého 562/35
+Brno-Žabovřesky
+616 00</p>
       <p class="f-ic">IČ: 05808201</p>
-      <p class="f-copy">© 2026 REZIDENCE PADOCHOV<br><a href="/ochrana-osobnich-udaju">Zpracování osobních údajů</a></p>
+      <p class="f-copy">© 2025 REZIDENCE PADOCHOV</p>
     </div>
   </div>
 </footer>

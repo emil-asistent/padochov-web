@@ -141,8 +141,8 @@
 <header class="site-header">
   <div class="container">
     <a class="logo" href="/"><img src="assets/img/REZIDENCE-PADOCHOV-Logo.png" alt="Rezidence Padochov"></a>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
-    <nav class="main-nav">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hlavni-menu"><i></i><i></i><i></i></button>
+    <nav class="main-nav" id="hlavni-menu">
       <ul>
         <li><a href="/" class="active">Úvod</a></li>
         <li><a href="lokalita">Lokalita</a></li>
@@ -151,6 +151,11 @@
         <li><a href="galerie">Galerie</a></li>
         <li><a href="kontakt">Kontakt</a></li>
       </ul>
+      <div class="nav-foot">
+        <p class="nav-foot__lbl">Makléř projektu</p>
+        <a class="nav-foot__tel" href="tel:+420733411446">+420 733 411 446</a><br>
+        <a class="nav-foot__mail" href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -160,9 +165,8 @@
   <div class="hero__slides">
     <div class="hero__slide hero__slide--main is-active">
       <div class="hero__inner">
-        <p class="slide-eyebrow">Rezidence Padochov · Padochov u Ivančic</p>
         <h1 class="slide-nadpis">Skvělý domov<br>pro vaši rodinu</h1>
-        <p class="slide-obsah">Šest novostaveb 5+kk se zahradou,<br>půl hodiny od Brna</p>
+        <p class="slide-obsah">Dostupné a klidné bydlení<br>půl hodiny od Brna</p>
         <a class="btn" href="nabizene-domy-a-cenik">Nabízené domy</a>
       </div>
     </div>
@@ -185,11 +189,10 @@
   <div class="container">
     <div class="grid-2">
       <div>
-        <h2 class="lead-h">Rezidence Padochov<br>je domov, o kterém sníte</h2>
+        <p class="lead-h">Rezidence Padochov<br>je domov, o kterém sníte</p>
         <p class="lead-sub">Dostupnost. Příroda. Klid.</p>
-        <p class="body-bold">Vítejte v Rezidenci Padochov. V klidné části obce jsme postavili 6 nadstandardních rodinných domů 5+kk s vlastní zahradou. Domy první etapy jsou hotové a připravené k nastěhování: koncový dům má užitnou plochu cca 112 m², prostřední cca 133 m².</p>
-        <p>Navrhli jsme domy, které šetří vaši peněženku (PENB B). Součástí <a href="standardy">vysokého standardu</a> je fotovoltaická elektrárna, tepelné čerpadlo s funkcí chlazení a dvě parkovací stání. Interiér prosvětlují velkoformátové HS portály a luxus dodávají italské obklady či vinylové podlahy. Získáte tak moderní a úsporný domov se strategickou polohou pro práci v Brně i Dukovanech.</p>
-        <p>Padochov je částí města Oslavany v okrese Brno-venkov. Do Ivančic je to autem 5 minut, do centra Brna zhruba půl hodiny a k nájezdu na D1 asi 12 kilometrů. Víc o okolí najdete na stránce <a href="lokalita">lokalita</a>.</p>
+        <p class="body-bold">Vítejte v Rezidenci Padochov. V klidném srdci obce pro vás stavíme 6 nadstandardních rodinných domů 5+kk s vlastní zahradou. Nečekejte na bydlení roky, první etapa moderních domů o ploše až 130 m² bude připravena k nastěhování již v únoru 2026.</p>
+        <p>Navrhli jsme domy, které šetří vaši peněženku (PENB B). Součástí vysokého standardu je fotovoltaická elektrárna, tepelné čerpadlo s funkcí chlazení a dvě parkovací stání. Interiér prosvětlují velkoformátové HS portály a luxus dodávají italské obklady či vinylové podlahy. Získáte tak moderní a úsporný domov se strategickou polohou pro práci v Brně i Dukovanech.</p>
         <a class="btn" href="o-projektu">Více o projektu</a>
       </div>
       <div>
@@ -205,7 +208,7 @@
   <div class="container">
     <div class="grid-2">
       <div>
-        <h2 class="lead-h">Máte zájem<br>o víc informací?</h2>
+        <p class="lead-h">Máte zájem<br>o víc informací?</p>
         <p class="lead-sub">Neváhejte a ozvěte se nám hned.</p>
       </div>
       <div>
@@ -222,9 +225,7 @@
         <div class="f-email"><label for="if-email">E-mailová adresa</label><input id="if-email" type="email" name="email" autocomplete="email" required></div>
         <div class="f-tel"><label for="if-tel">Telefon <span class="req">(nepovinné)</span></label><input id="if-tel" type="tel" name="telefon" autocomplete="tel"></div>
         <div class="f-msg"><label for="if-msg">Zpráva <span class="req">(nepovinné)</span></label><textarea id="if-msg" name="message" rows="4" placeholder="Který dům vás zajímá, kdy byste chtěli bydlet…"></textarea></div>
-        <input type="hidden" name="dum" value="">
         <div class="f-hp" aria-hidden="true"><label for="if-company">Nevyplňujte</label><input id="if-company" type="text" name="company" tabindex="-1" autocomplete="off"></div>
-        <p class="f-gdpr">Odesláním nám dáváte své údaje k tomu, abychom vám na poptávku odpověděli. Podrobnosti jsou v <a href="ochrana-osobnich-udaju">zpracování osobních údajů</a>.</p>
         <div class="f-actions"><button type="submit" class="btn btn--dark">Odeslat poptávku</button><p class="form-status" role="status" aria-live="polite"></p></div>
       </form>
     </div>
@@ -245,20 +246,15 @@
         <li><a href="kontakt">Kontakt</a></li>
       </ul>
     </nav>
+    <div></div>
     <div>
-      <p class="f-label">Projekt:</p>
-      <p class="f-name">Rezidence Padochov</p>
-      <p class="f-addr">Padochov, 664 91 Oslavany
-okres Brno-venkov
-Jihomoravský kraj</p>
-    </div>
-    <div>
-      <p class="f-label">Prodej zajišťuje:</p>
+      <p class="f-label">Makléř:</p>
       <p class="f-name">Honza Čermák</p>
-      <p class="f-addr"><a href="tel:+420733411446">+420 733 411 446</a>
-<a href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a></p>
+      <p class="f-addr">Tolstého 562/35
+Brno-Žabovřesky
+616 00</p>
       <p class="f-ic">IČ: 05808201</p>
-      <p class="f-copy">© 2026 REZIDENCE PADOCHOV<br><a href="/ochrana-osobnich-udaju">Zpracování osobních údajů</a></p>
+      <p class="f-copy">© 2025 REZIDENCE PADOCHOV</p>
     </div>
   </div>
 </footer>

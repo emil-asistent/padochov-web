@@ -136,8 +136,8 @@
 <header class="site-header">
   <div class="container">
     <a class="logo" href="/"><img src="assets/img/REZIDENCE-PADOCHOV-Logo.png" alt="Rezidence Padochov"></a>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
-    <nav class="main-nav">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hlavni-menu"><i></i><i></i><i></i></button>
+    <nav class="main-nav" id="hlavni-menu">
       <ul>
         <li><a href="/">Úvod</a></li>
         <li><a href="lokalita">Lokalita</a></li>
@@ -146,6 +146,11 @@
         <li><a href="galerie">Galerie</a></li>
         <li><a href="kontakt">Kontakt</a></li>
       </ul>
+      <div class="nav-foot">
+        <p class="nav-foot__lbl">Makléř projektu</p>
+        <a class="nav-foot__tel" href="tel:+420733411446">+420 733 411 446</a><br>
+        <a class="nav-foot__mail" href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -157,9 +162,7 @@
       <h1 style="margin:0;font-size:clamp(34px,4.5vw,54px);">Dům 05</h1>
       <span class="status-badge neni">Zatím není k dispozici</span>
     </div>
-    <h2 style="font-family:var(--nexa-bold);font-size:clamp(20px,2.2vw,26px);margin:18px 0 8px;">Prostřední dům druhé etapy, cca 133 m²</h2>
-    <p class="body-bold" style="color:var(--text);max-width:78ch;">Dům 05 bude stát uprostřed levého trojdomu a s užitnou plochou cca 133 m² půjde o větší z obou typů, stejně jako u domu 02. Dispozice 5+kk se rozkládá na dvou podlažích, součástí je vlastní zahrada, terasa s pergolou a dvě parkovací stání. Dům patří do druhé etapy se zahájením výstavby v prvním čtvrtletí roku 2027 a jeho cena je zatím na dotaz.</p>
-    <p style="font-family:var(--nexa-book);color:var(--grey);font-size:15px;max-width:78ch;">Dům stojí v Padochově, části města Oslavany v okrese Brno-venkov. Fotografie a vybavení na této stránce odpovídají vzorovému domu č. 3, standardy jsou v celém projektu shodné.</p>
+    <p class="body-bold" style="color:var(--text);">Fotografie a vybavení odpovídají vzorovému (dokončenému) domu č. 3. Standardy jsou v celém projektu shodné, jednotlivé domy se liší pouze typem (koncový / prostřední) a orientací.</p>
     <div class="grid-2" style="align-items:start;margin-top:24px;">
       <div>
         <img class="foto-hero" src="assets/img/gallery/ext-01.webp" alt="Dům 05, exteriér trojdomu">
@@ -200,7 +203,7 @@
         <p class="body-bold" style="color:var(--text);">Ozvěte se makléři Honzovi Čermákovi:</p>
         <div class="contact-line" style="color:#000;"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Telefon"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><a href="tel:+420733411446" style="color:#000;">+420 733 411 446</a></div>
         <div class="contact-line" style="color:#000;"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="E-mail"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:reality@cermakhonza.cz" style="color:#000;">reality@cermakhonza.cz</a></div>
-        <a class="btn" href="kontakt?dum=05" style="margin-top:14px;">Mám zájem o Dům 05</a>
+        <a class="btn" href="kontakt" style="margin-top:14px;">Kontaktovat</a>
       </div>
     </div>
 
@@ -232,9 +235,6 @@
     </div>
 
 
-    <h2 class="h2-underline" style="margin-top:48px;">Další domy v projektu</h2>
-    <p class="volne-odkazy" style="margin-top:10px;"><a href="dum-01">Dům 01 · 112 m²</a> <a href="dum-02">Dům 02 · 133 m²</a> <a href="dum-03">Dům 03 · 112 m²</a> <a href="dum-04">Dům 04 · 112 m²</a> <a href="dum-06">Dům 06 · 112 m²</a></p>
-    <p style="font-family:var(--nexa-book);color:var(--grey);font-size:15px;margin-top:10px;">Přehled všech šesti domů, jejich statusů a cen najdete v <a href="nabizene-domy-a-cenik" style="color:#15140f;text-decoration:underline;text-underline-offset:3px;">ceníku</a>.</p>
     <h2 class="h2-underline" style="margin-top:48px;">Půdorysy domu</h2>
     <p class="body-bold" style="color:var(--text);">Dispozice 5+kk na dvou podlažích: přízemí s obývacím pokojem, kuchyní a technickým zázemím, v patře ložnice, pokoje a pracovna.</p>
     <div class="galerie galerie2" style="margin-top:8px;">
@@ -257,20 +257,15 @@
         <li><a href="kontakt">Kontakt</a></li>
       </ul>
     </nav>
+    <div></div>
     <div>
-      <p class="f-label">Projekt:</p>
-      <p class="f-name">Rezidence Padochov</p>
-      <p class="f-addr">Padochov, 664 91 Oslavany
-okres Brno-venkov
-Jihomoravský kraj</p>
-    </div>
-    <div>
-      <p class="f-label">Prodej zajišťuje:</p>
+      <p class="f-label">Makléř:</p>
       <p class="f-name">Honza Čermák</p>
-      <p class="f-addr"><a href="tel:+420733411446">+420 733 411 446</a>
-<a href="mailto:reality@cermakhonza.cz">reality@cermakhonza.cz</a></p>
+      <p class="f-addr">Tolstého 562/35
+Brno-Žabovřesky
+616 00</p>
       <p class="f-ic">IČ: 05808201</p>
-      <p class="f-copy">© 2026 REZIDENCE PADOCHOV<br><a href="/ochrana-osobnich-udaju">Zpracování osobních údajů</a></p>
+      <p class="f-copy">© 2025 REZIDENCE PADOCHOV</p>
     </div>
   </div>
 </footer>
