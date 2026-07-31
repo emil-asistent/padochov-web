@@ -1,0 +1,51 @@
+# Rezidence Padochov
+
+> Developerský projekt šesti novostaveb rodinných domů 5+kk se zahradou v Padochově, části města Oslavany
+> (okres Brno-venkov, Jihomoravský kraj, PSČ 664 91), zhruba 30 minut autem od Brna a 5 minut z Ivančic.
+> Domy stojí ve dvou řadových trojdomech. Prodej zajišťuje realitní makléř Honza Čermák, +420 733 411 446,
+> reality@cermakhonza.cz. Web: https://rezidencepadochov.cz
+
+Rezidence Padochov není totéž co starší projekt "Domy Padochov" / "Rodinné domy Padochov" společnosti
+Winning Estate, který stojí v téže obci a je vyprodaný. Jde o dva různé projekty a dva různé prodejce.
+
+## Co se prodává
+
+- 6 rodinných domů, dispozice 5+kk, dvě podlaží, ve dvou řadových trojdomech
+- Užitná plocha: koncový dům cca 112 m², prostřední dům cca 133 m²
+- Ke každému domu vlastní zahrada a 2 parkovací stání před domem
+- Energetická náročnost PENB B, prodej jako novostavba v nevybaveném stavu
+- Domy 01, 02 a 03 (první etapa) jsou volné, cena 10 475 000 Kč, konečná, prodej osvobozen od DPH
+- Domy 04, 05 a 06 patří do druhé etapy, jejíž zahájení je plánováno na Q1 2027; cena na dotaz
+
+## Standardy provedení
+
+- Tepelné čerpadlo vzduch/voda Alpha innotec LWAV 82, topí i chladí
+- Fotovoltaická elektrárna 5,4 kWp (panely Trina Vertex S), bez baterií
+- Podlahové vytápění v celém domě, izolační trojskla v antracitových rámech, velkoformátový HS portál
+- Optický kabel, vinylová podlaha v dekoru dub natur, dlažba ITA Ceramiche Apulia (Ivory a Cream)
+- Dveře DKP v odstínu kašmír, dvě koupelny s italským obkladem
+
+## Lokalita
+
+- Mateřská škola Duha necelých 100 metrů od domů, obchod se smíšeným zbožím a Z-Box přímo v obci
+- Oslavany 2 km, Ivančice 5 minut autem, centrum Brna cca 30 minut, nájezd na D1 zhruba 12 km
+- Jaderná elektrárna Dukovany 40 km, spojení do Brna i Ivančic linkami IDS JMK ze tří zastávek v obci
+- TJ Sokol Padochov (fotbal, florbal, badminton, cyklistika), pivovar s restaurací, dětské hřiště
+- V okolí zábavní park Permonium, biotop Oslavany, zámek Oslavany
+
+## Stránky
+
+- [Úvod](https://rezidencepadochov.cz/): přehled projektu a nezávazná poptávka
+- [Nabízené domy a ceník](https://rezidencepadochov.cz/nabizene-domy-a-cenik): plán areálu, ceny, statusy, časté dotazy
+- [Lokalita](https://rezidencepadochov.cz/lokalita): dostupnost, vybavenost obce, okolí
+- [O projektu](https://rezidencepadochov.cz/o-projektu): časová osa, developer, financování
+- [Standardy](https://rezidencepadochov.cz/standardy): kompletní technická specifikace a půdorysy
+- [Galerie](https://rezidencepadochov.cz/galerie): fotografie, videoprohlídka, vizualizace
+- [Kontakt](https://rezidencepadochov.cz/kontakt): makléř, financování, poptávkový formulář
+- Detaily jednotlivých domů: [Dům 01](https://rezidencepadochov.cz/dum-01), [Dům 02](https://rezidencepadochov.cz/dum-02), [Dům 03](https://rezidencepadochov.cz/dum-03), [Dům 04](https://rezidencepadochov.cz/dum-04), [Dům 05](https://rezidencepadochov.cz/dum-05), [Dům 06](https://rezidencepadochov.cz/dum-06)
+
+## Kdo za projektem stojí
+
+Developerem je Tomáš Vašíček, spolumajitel společností Money2You (finance) a Reality2You (realitní služby).
+Rezidence Padochov je jeho čtvrtý developerský projekt. Financování a hypotéky řeší Filip Vašíček,
++420 725 597 243, f.vasicek@money2u.cz.

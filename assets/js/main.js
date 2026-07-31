@@ -52,12 +52,23 @@
       statusEl.className = 'form-status' + (kind ? ' is-' + kind : '');
     }
     function val(n) { var el = form.querySelector('[name=' + n + ']'); return el ? el.value.trim() : ''; }
+    // předvyplnění, o který dům jde (odkaz z detailu domu: /kontakt?dum=01)
+    try {
+      var dumParam = (new URLSearchParams(window.location.search)).get('dum') || '';
+      if (/^0[1-6]$/.test(dumParam)) {
+        var hidden = form.querySelector('input[name="dum"]');
+        if (hidden) hidden.value = dumParam;
+        var msgEl = form.querySelector('[name="message"]');
+        if (msgEl && !msgEl.value) msgEl.value = 'Mám zájem o Dům ' + dumParam + '. ';
+      }
+    } catch (err) {}
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = val('name'), email = val('email');
       if (!name || !email) { setStatus('Vyplňte prosím jméno a e-mailovou adresu.', 'err'); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus('Zkontrolujte prosím e-mailovou adresu.', 'err'); return; }
-      var payload = { name: name, email: email, phone: val('telefon'), msg: val('message'), company: val('company') };
+      var payload = { name: name, email: email, phone: val('telefon'), msg: val('message'), company: val('company'), dum: val('dum') };
       if (btn) { btn.disabled = true; btn.textContent = 'Odesílám…'; }
       setStatus('', '');
       fetch('/api/contact', {
