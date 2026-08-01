@@ -366,6 +366,7 @@ body.lb-open{overflow:hidden;}
   .vizitka__contact{gap:2px;}
   .vizitka__contact a{min-height:44px;padding:4px 0;}
   .contact-line a{display:inline-flex;align-items:center;min-height:44px;}
+  .main-nav .nav-foot__mail{min-height:44px;align-items:center;}
 }
 
 /* ---------- Patička ---------- */
