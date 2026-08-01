@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://rezidencepadochov.cz/",
+      "permanent": true
+    },
+    {
       "source": "/:cesta*",
       "destination": "https://rezidencepadochov.cz/:cesta*",
       "permanent": true
