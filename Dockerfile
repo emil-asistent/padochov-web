@@ -13,7 +13,7 @@ COPY nginx.conf /etc/nginx/http.d/default.conf
 
 COPY . /usr/share/nginx/html/
 RUN cd /usr/share/nginx/html \
- && rm -rf api server.js start.sh package.json package-lock.json node_modules Dockerfile .dockerignore nginx.conf vercel.json \
+ && rm -rf api server.js start.sh package.json package-lock.json node_modules Dockerfile .dockerignore nginx.conf vercel.json scripts \
  && chmod +x /app/start.sh
 
 EXPOSE 80

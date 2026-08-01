@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "description": "Rezidence Padochov — statický web + kontaktní formulář (přímé odeslání na e-mail)",
+  "scripts": {
+    "seo:check": "node scripts/seo-check.mjs https://rezidencepadochov.cz",
+    "seo:indexnow": "node scripts/indexnow.mjs",
+    "seo:po-deployi": "npm run seo:check && npm run seo:indexnow"
+  },
   "dependencies": {
     "nodemailer": "^6.9.14"
   }

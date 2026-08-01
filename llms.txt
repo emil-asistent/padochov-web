@@ -36,7 +36,7 @@ Winning Estate, který stojí v téže obci a je vyprodaný. Jde o dva různé p
 ## Stránky
 
 - [Úvod](https://rezidencepadochov.cz/): přehled projektu a nezávazná poptávka
-- [Nabízené domy a ceník](https://rezidencepadochov.cz/nabizene-domy-a-cenik): plán areálu, ceny, statusy, časté dotazy
+- [Nabízené domy a ceník](https://rezidencepadochov.cz/nabizene-domy-a-cenik): plán areálu, ceny a statusy jednotlivých domů
 - [Lokalita](https://rezidencepadochov.cz/lokalita): dostupnost, vybavenost obce, okolí
 - [O projektu](https://rezidencepadochov.cz/o-projektu): časová osa, developer, financování
 - [Standardy](https://rezidencepadochov.cz/standardy): kompletní technická specifikace a půdorysy

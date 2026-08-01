@@ -1,0 +1,23 @@
+{
+  "name": "Rezidence Padochov",
+  "short_name": "Padochov",
+  "description": "Šest novostaveb rodinných domů 5+kk se zahradou v Padochově u Ivančic, 30 minut od Brna.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "lang": "cs",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/assets/img/REZIDENCE-PADOCHOV-Symbol.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/assets/img/REZIDENCE-PADOCHOV-Symbol.png",
+      "sizes": "722x800",
+      "type": "image/png"
+    }
+  ]
+}
