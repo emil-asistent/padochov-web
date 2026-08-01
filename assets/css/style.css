@@ -183,6 +183,10 @@ tr.neni{background:var(--status-neni);}
 .galerie .g-item{overflow:hidden;}
 .galerie .g-item img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;cursor:zoom-in;transition:transform .5s ease, opacity .3s ease;}
 .galerie .g-item img:hover{transform:scale(1.05);opacity:.94;}
+/* Půdorysy jsou výkres, ne fotka: poměr 4/3 s object-fit:cover z nich ukrajoval
+   po stranách zhruba šestinu i s popisky místností. Drží se vlastní poměr. */
+.galerie--plan .g-item img{aspect-ratio:900/563;object-fit:contain;background:#fff;}
+.galerie--plan .g-item img:hover{transform:none;opacity:.94;}
 .foto-hero{cursor:zoom-in;display:block;width:100%;transition:opacity .3s ease;}
 .foto-hero:hover{opacity:.94;}
 @media(max-width:767px){.galerie4 .g-item{width:50%;}.galerie2 .g-item{width:100%;}}
@@ -279,7 +283,10 @@ body.lb-open{overflow:hidden;}
 @media(max-width:480px){.facts{gap:26px 24px;}}
 
 /* dlaždice obsahu s podnadpisem se zeleným podtržením */
-.h2-underline{font-family:var(--nexa-bold);font-size:32px;display:inline-block;border-bottom:3px solid var(--green);margin:0 0 18px;color:#000;}
+/* Zelená linka má být jen pod textem, ne přes celý sloupec, ale nadpis musí
+   zůstat blokový: jako inline-block se lepil vedle předchozího tlačítka
+   (na "O projektu" seděl nadpis Financování v šipce tlačítka Standardy). */
+.h2-underline{font-family:var(--nexa-bold);font-size:32px;display:block;width:fit-content;max-width:100%;border-bottom:3px solid var(--green);margin:0 0 18px;color:#000;}
 .h2-underline.on-green{border-bottom-color:#fff;}
 .map-embed{width:100%;height:500px;border:0;display:block;}
 .prose ul{padding-left:1.2em;margin:0 0 1em;}
@@ -350,6 +357,15 @@ body.lb-open{overflow:hidden;}
   .vizitka__photo{aspect-ratio:1/1;}
   .vizitka__photo img{object-position:50% 6%;}
   .vizitka__body{padding:22px 22px 26px;}
+}
+
+/* Telefon a mail se na dotyku trefovaly na výšku textu (23 px). Řídí se to
+   podle vstupního zařízení, ne podle šířky okna, aby to platilo i na tabletu
+   v landscapu a naopak neroztahovalo myšový desktop. */
+@media(pointer:coarse){
+  .vizitka__contact{gap:2px;}
+  .vizitka__contact a{min-height:44px;padding:4px 0;}
+  .contact-line a{display:inline-flex;align-items:center;min-height:44px;}
 }
 
 /* ---------- Patička ---------- */
